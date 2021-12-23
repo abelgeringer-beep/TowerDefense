@@ -36,16 +36,19 @@ namespace UI
 
             ui.SetActive(true);
         }
+
         public void Hide()
         {
             //Debug.Log("hide");
             ui.SetActive(false);
         }
+
         public void Upgrade()
         {
             _target.UpgradeTurret();
             BuildManager.Instance.DeselectNode();
         }
+
         public void Sell()
         {
             _target.SellTurret();

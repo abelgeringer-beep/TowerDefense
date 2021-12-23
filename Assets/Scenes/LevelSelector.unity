@@ -324,7 +324,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1213507491}
   m_HandleRect: {fileID: 1213507490}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 40749713}
-  UI: {fileID: 177029459}
+  ui: {fileID: 0}
   levelButtons:
   - {fileID: 1148480574}
   - {fileID: 369912660}
@@ -1084,6 +1084,11 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 9075775580542076857, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775bd6c599b2eb4a835d81869b54b70, type: 3}
 --- !u!224 &641324020 stripped
@@ -1525,6 +1530,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075775580542076857, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775bd6c599b2eb4a835d81869b54b70, type: 3}
@@ -1970,6 +1980,11 @@ PrefabInstance:
       value: '3
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075775580542076857, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775bd6c599b2eb4a835d81869b54b70, type: 3}
@@ -3166,6 +3181,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9075775580542076857, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775bd6c599b2eb4a835d81869b54b70, type: 3}
 --- !u!224 &2051201542 stripped
@@ -3416,6 +3436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075775580542076857, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775bd6c599b2eb4a835d81869b54b70, type: 3}

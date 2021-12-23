@@ -16,12 +16,10 @@ namespace Managers
 
         private void SavePrefs()
         {
-
         }
 
         private void LoadPrefs()
         {
-
         }
     }
 }

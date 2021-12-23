@@ -21,6 +21,5 @@ namespace UI
         {
             sceneFader.FadeTo(menuSceneName);
         }
-
     }
 }

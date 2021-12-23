@@ -13,7 +13,7 @@ namespace UI
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
                 Toggle();
         }
 

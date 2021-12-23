@@ -20,7 +20,8 @@ namespace Enemy
         private void Update()
         {
             var direction = _target.position - transform.position;
-            transform.Translate(translation: direction.normalized * (_enemy.speed * Time.deltaTime), Space.World); // deltaTime -> not to depend on fps but time
+            transform.Translate(translation: direction.normalized * (_enemy.speed * Time.deltaTime),
+                Space.World); // deltaTime -> not to depend on fps but time
 
             if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
             {
@@ -37,6 +38,7 @@ namespace Enemy
                 EndPath();
                 return;
             }
+
             _wavePointIndex++;
             _target = WayPoints.Points[_wavePointIndex];
         }

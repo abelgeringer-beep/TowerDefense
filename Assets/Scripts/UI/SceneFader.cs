@@ -24,11 +24,11 @@ namespace UI
         {
             float t = 1f; // time
             img.enabled = true;
-            while(t > 0f)
+            while (t > 0f)
             {
                 t -= Time.deltaTime; // because of IEnumerator we can do this alltho it isn't an Update method
                 float a = curve.Evaluate(t);
-                img.color = new Color (0f, 0f, 0f, a);
+                img.color = new Color(0f, 0f, 0f, a);
                 yield return 0;
             }
         }
@@ -48,4 +48,3 @@ namespace UI
         }
     }
 }
-

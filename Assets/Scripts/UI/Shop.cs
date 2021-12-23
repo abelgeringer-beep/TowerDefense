@@ -15,14 +15,17 @@ namespace UI
         {
             this._buildManager = BuildManager.Instance;
         }
+
         public void SelectStandardTurret()
         {
             _buildManager.SelectTurretToBuild(standardTurret);
         }
+
         public void SelectMissleLauncherItem()
         {
             _buildManager.SelectTurretToBuild(missleLauncher);
         }
+
         public void SelectLeaserBeamer()
         {
             _buildManager.SelectTurretToBuild(leaserBeamer);
