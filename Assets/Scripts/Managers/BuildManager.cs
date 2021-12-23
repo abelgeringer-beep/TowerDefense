@@ -27,8 +27,10 @@ namespace Managers
                 Debug.Log("More than one BuildManager");
                 return;
             }
+
             Instance = this; // the beggining of the program it will store it which can be accessed from anywhere
         }
+
         public void SelectNode(Node node)
         {
             if (_selectedNode == node) //if you click the turret again the UI over it hides
@@ -42,16 +44,19 @@ namespace Managers
 
             nodeUI.SetTarget(node);
         }
+
         public void DeselectNode()
         {
             _selectedNode = null;
             nodeUI.Hide();
         }
+
         public void SelectTurretToBuild(TurretBlueprint turret)
         {
             _turretToBuild = turret;
             DeselectNode();
         }
+
         public TurretBlueprint GetTurretToBuild()
         {
             return _turretToBuild;

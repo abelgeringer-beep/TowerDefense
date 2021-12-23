@@ -17,10 +17,10 @@ namespace Managers
 
         private void Update()
         {
-            if(GameIsOver)
+            if (GameIsOver)
                 return;
 
-            if(PlayerStats.Lives <= 0)
+            if (PlayerStats.Lives <= 0)
                 EndGame();
         }
 

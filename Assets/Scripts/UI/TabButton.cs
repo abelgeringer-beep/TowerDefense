@@ -11,7 +11,7 @@ namespace UI
         {
             tabGroup.Subscribe(this);
         }
-    
+
         public void OnPointerClick(PointerEventData eventData)
         {
             tabGroup.OnTabSelected(this);

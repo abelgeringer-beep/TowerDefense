@@ -9,7 +9,7 @@ namespace Enemy
         public void Awake()
         {
             Points = new Transform[transform.childCount];
-            for(int i = 0; i < Points.Length; i++)
+            for (int i = 0; i < Points.Length; i++)
             {
                 Points[i] = transform.GetChild(i);
             }

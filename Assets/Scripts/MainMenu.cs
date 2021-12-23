@@ -29,11 +29,9 @@ public class MainMenu : MonoBehaviour
 
     public void Multiplayer()
     {
-
     }
 
     public void RandomLevels()
     {
-
     }
 }
