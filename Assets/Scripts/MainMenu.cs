@@ -31,7 +31,8 @@ public class MainMenu : MonoBehaviour
     {
     }
 
-    public void RandomLevels()
+    public void CustomMaps()
     {
+        sceneFader.FadeTo("CustomMap01");
     }
 }
