@@ -19,7 +19,7 @@ namespace UI
         {
             this._target = target;
 
-            transform.position = this._target.GETBuildPosition();
+            transform.position = this._target.GetBuildPosition();
 
             if (!this._target.isUpgraded)
             {

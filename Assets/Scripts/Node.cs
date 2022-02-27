@@ -1,4 +1,5 @@
 ﻿using Managers;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -44,37 +45,42 @@ public class Node : MonoBehaviour
         Destroy(this.turret);
 
         //build new one
-        GameObject turret =
-            (GameObject) Instantiate(turretBlueprint.upgradedPrefab, GETBuildPosition(),
-                Quaternion.identity); // no rotation
+        GameObject turret = PhotonNetwork.IsConnected 
+            ? PhotonNetwork.Instantiate(turretBlueprint.upgradedPrefab.name, GetBuildPosition(), Quaternion.identity)
+            : Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        
         this.turret = turret;
-
-        GameObject effect =
-            (GameObject) Instantiate(_buildManager.buildEffect, GETBuildPosition(), Quaternion.identity);
+        
+        GameObject effect = PhotonNetwork.IsConnected
+            ? PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity)
+            : Instantiate(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
 
         isUpgraded = true;
     }
 
-    void BuildTurret(TurretBlueprint blueprint)
+    private void BuildTurret(TurretBlueprint blueprint)
     {
         if (PlayerStats.Money < blueprint.cost)
             return;
 
         PlayerStats.Money -= blueprint.cost;
+        GameObject turret = PhotonNetwork.IsConnected 
+            ? PhotonNetwork.Instantiate(blueprint.prefab.name, GetBuildPosition(), Quaternion.identity)
+            : Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
 
-        GameObject turret =
-            (GameObject) Instantiate(blueprint.prefab, GETBuildPosition(), Quaternion.identity); // no rotation
         this.turret = turret;
 
         turretBlueprint = blueprint;
 
-        GameObject effect =
-            (GameObject) Instantiate(_buildManager.buildEffect, GETBuildPosition(), Quaternion.identity);
+        GameObject effect = PhotonNetwork.IsConnected
+            ? PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity)
+            : Instantiate(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        
         Destroy(effect, 5f);
     }
 
-    public Vector3 GETBuildPosition()
+    public Vector3 GetBuildPosition()
     {
         return transform.position + positionOffset;
     }
@@ -83,14 +89,14 @@ public class Node : MonoBehaviour
     {
         _rend = GetComponent<Renderer>();
         startColor = _rend.material.color;
-        this._buildManager = BuildManager.Instance;
+        _buildManager = BuildManager.Instance;
     }
 
     public void SellTurret()
     {
         PlayerStats.Money += turretBlueprint.GetSellAmount();
 
-        GameObject effect = (GameObject) Instantiate(_buildManager.sellEffect, GETBuildPosition(), Quaternion.identity);
+        GameObject effect = Instantiate(_buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
 
         Destroy(turret);

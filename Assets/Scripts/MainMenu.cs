@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
 
     public void Multiplayer()
     {
+        sceneFader.FadeTo("MultiplayerMenu");
     }
 
     public void CustomMaps()
