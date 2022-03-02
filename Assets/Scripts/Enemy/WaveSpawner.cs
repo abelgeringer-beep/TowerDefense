@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Managers;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +30,7 @@ namespace Enemy
             EnemiesAlive = 0;
             Time.timeScale = 1f;
         }
-
+        [PunRPC]
         private void Update()
         {
             if (EnemiesAlive > 0)
@@ -40,7 +41,7 @@ namespace Enemy
             if (_waveIndex == waves.Length)
             {
                 gameMaster.WinLevel();
-                this.enabled = false;
+                enabled = false;
             }
 
             if (_countdown <= 0f)
@@ -78,7 +79,10 @@ namespace Enemy
 
         private void SpawnEnemy(GameObject enemy)
         {
-            Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+            if(PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
+                PhotonNetwork.Instantiate(enemy.name, spawnPoint.position, spawnPoint.rotation);
+            else if(!PhotonNetwork.IsConnected)
+                Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         }
     }
 }

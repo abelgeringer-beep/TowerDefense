@@ -14,16 +14,15 @@ namespace UI
         public Button upgradeButton;
 
         public Text sellAmount;
-
         public void SetTarget(Node target)
         {
-            this._target = target;
+            _target = target;
 
-            transform.position = this._target.GetBuildPosition();
+            transform.position = _target.GetBuildPosition();
 
-            if (!this._target.isUpgraded)
+            if (!_target.isUpgraded)
             {
-                upgradeCost.text = "$" + this._target.turretBlueprint.upgradeCost;
+                upgradeCost.text = "$" + _target.turretBlueprint.upgradeCost;
                 upgradeButton.interactable = true;
             }
             else
@@ -32,14 +31,13 @@ namespace UI
                 upgradeButton.interactable = false;
             }
 
-            sellAmount.text = "$" + this._target.turretBlueprint.GetSellAmount();
+            sellAmount.text = "$" + _target.turretBlueprint.GetSellAmount();
 
             ui.SetActive(true);
         }
 
         public void Hide()
         {
-            //Debug.Log("hide");
             ui.SetActive(false);
         }
 

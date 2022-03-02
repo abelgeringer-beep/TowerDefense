@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using UnityEngine.UI;
 
@@ -7,6 +8,11 @@ namespace Multiplayer
     {
         public InputField createInput;
         public InputField joinInput;
+
+        private void Start()
+        {
+            //PhotonNetwork.AutomaticallySyncScene = true;
+        }
 
         public void CreateRoom()
         {

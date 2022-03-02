@@ -24609,7 +24609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e7546ce700d6d41815e19246db5896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 1866934626}
+  ui: {fileID: 303747285}
   menuSceneName: mainMenu
   sceneFader: {fileID: 1657160787}
 --- !u!1001 &1925436461

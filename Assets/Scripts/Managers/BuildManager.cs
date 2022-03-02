@@ -27,7 +27,7 @@ namespace Managers
                 return;
             }
 
-            Instance = this; // the beginning of the program it will store it which can be accessed from anywhere
+            Instance = this;
         }
 
         public void SelectNode(Node node)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     public void Seek(Transform target)
     {
-        this._target = target;
+        _target = target;
     }
 
     public void Update()
@@ -36,7 +37,9 @@ public class Bullet : MonoBehaviour
 
     private void HitTarget()
     {
-        GameObject effectIns = (GameObject) Instantiate(impactEffect, transform.position, transform.rotation);
+        GameObject effectIns =  PhotonNetwork.IsConnected && PhotonNetwork.InRoom 
+            ? PhotonNetwork.Instantiate(impactEffect.name, transform.position, transform.rotation)
+            : Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 5f);
 
         if (explosionRadius > 0f)
@@ -51,7 +54,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Explode()
+    private void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         // gets all the objects within the radius of the position

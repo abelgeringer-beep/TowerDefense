@@ -25392,7 +25392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e7546ce700d6d41815e19246db5896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 1866934626}
+  ui: {fileID: 303747285}
   menuSceneName: mainMenu
   sceneFader: {fileID: 2041573924}
 --- !u!1001 &1925436461
@@ -25955,7 +25955,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2003066467
 Canvas:
   m_ObjectHideFlags: 0

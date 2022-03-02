@@ -8,12 +8,12 @@ namespace UI
         public TurretBlueprint standardTurret;
         public TurretBlueprint missileLauncher;
         public TurretBlueprint leaserBeamer;
-
+        
         private BuildManager _buildManager;
 
         private void Start()
         {
-            this._buildManager = BuildManager.Instance;
+            _buildManager = BuildManager.Instance;
         }
 
         public void SelectStandardTurret()

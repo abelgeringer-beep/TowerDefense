@@ -15,7 +15,7 @@ public class Node : MonoBehaviour
     [HideInInspector] public bool isUpgraded = false;
 
     private Renderer _rend;
-    BuildManager _buildManager;
+    private BuildManager _buildManager;
 
     private void OnMouseDown()
     {
@@ -41,19 +41,13 @@ public class Node : MonoBehaviour
 
         PlayerStats.Money -= turretBlueprint.upgradeCost;
 
-        //destroy old one 
         Destroy(this.turret);
 
-        //build new one
-        GameObject turret = PhotonNetwork.IsConnected 
-            ? PhotonNetwork.Instantiate(turretBlueprint.upgradedPrefab.name, GetBuildPosition(), Quaternion.identity)
-            : Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        GameObject turret = InstantiateSM(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
         
         this.turret = turret;
         
-        GameObject effect = PhotonNetwork.IsConnected
-            ? PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity)
-            : Instantiate(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        GameObject effect = InstantiateSM(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
 
         isUpgraded = true;
@@ -65,17 +59,13 @@ public class Node : MonoBehaviour
             return;
 
         PlayerStats.Money -= blueprint.cost;
-        GameObject turret = PhotonNetwork.IsConnected 
-            ? PhotonNetwork.Instantiate(blueprint.prefab.name, GetBuildPosition(), Quaternion.identity)
-            : Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
+        GameObject turret = InstantiateSM(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
 
         this.turret = turret;
 
         turretBlueprint = blueprint;
 
-        GameObject effect = PhotonNetwork.IsConnected
-            ? PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity)
-            : Instantiate(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        GameObject effect = InstantiateSM(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         
         Destroy(effect, 5f);
     }
@@ -119,8 +109,17 @@ public class Node : MonoBehaviour
             _rend.material.color = notEnoughMoneyColor;
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
         _rend.material.color = startColor;
+    }
+
+    // For instantiating GameObjects weather the player is in multiplayer mode or Single-player
+    private GameObject InstantiateSM(GameObject inst, Vector3 position, Quaternion rotation)
+    { 
+        return PhotonNetwork.IsConnected && PhotonNetwork.InRoom
+            ? PhotonNetwork.Instantiate(inst.name, position, rotation)
+            : Instantiate(inst, position, rotation);
+        
     }
 }
