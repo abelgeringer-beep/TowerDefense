@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -20,9 +21,9 @@ namespace UI
         public void Toggle()
         {
             ui.SetActive(!ui.activeSelf);
-
             Time.timeScale = ui.activeSelf ? 0f : 1f;
         }
+        [PunRPC]
 
         public void Menu()
         {

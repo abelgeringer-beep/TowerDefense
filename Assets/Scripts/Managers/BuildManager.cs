@@ -5,8 +5,7 @@ namespace Managers
 {
     public class BuildManager : MonoBehaviour
     {
-        public static BuildManager Instance; // stores a reference of itself (Singleton pattern)
-        //don't want to make references for all the nodes
+        public static BuildManager Instance; // Singleton pattern
 
         public GameObject buildEffect;
 
@@ -28,12 +27,12 @@ namespace Managers
                 return;
             }
 
-            Instance = this; // the beggining of the program it will store it which can be accessed from anywhere
+            Instance = this;
         }
 
         public void SelectNode(Node node)
         {
-            if (_selectedNode == node) //if you click the turret again the UI over it hides
+            if (_selectedNode == node) // if you click the turret again the UI over it hides
             {
                 DeselectNode();
                 return;

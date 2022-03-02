@@ -1,4 +1,5 @@
 ﻿using Managers;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,7 +15,7 @@ public class Node : MonoBehaviour
     [HideInInspector] public bool isUpgraded = false;
 
     private Renderer _rend;
-    BuildManager _buildManager;
+    private BuildManager _buildManager;
 
     private void OnMouseDown()
     {
@@ -40,41 +41,36 @@ public class Node : MonoBehaviour
 
         PlayerStats.Money -= turretBlueprint.upgradeCost;
 
-        //destroy old one 
         Destroy(this.turret);
 
-        //build new one
-        GameObject turret =
-            (GameObject) Instantiate(turretBlueprint.upgradedPrefab, GETBuildPosition(),
-                Quaternion.identity); // no rotation
+        GameObject turret = InstantiateSM(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        
         this.turret = turret;
-
-        GameObject effect =
-            (GameObject) Instantiate(_buildManager.buildEffect, GETBuildPosition(), Quaternion.identity);
+        
+        GameObject effect = InstantiateSM(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
 
         isUpgraded = true;
     }
 
-    void BuildTurret(TurretBlueprint blueprint)
+    private void BuildTurret(TurretBlueprint blueprint)
     {
         if (PlayerStats.Money < blueprint.cost)
             return;
 
         PlayerStats.Money -= blueprint.cost;
+        GameObject turret = InstantiateSM(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
 
-        GameObject turret =
-            (GameObject) Instantiate(blueprint.prefab, GETBuildPosition(), Quaternion.identity); // no rotation
         this.turret = turret;
 
         turretBlueprint = blueprint;
 
-        GameObject effect =
-            (GameObject) Instantiate(_buildManager.buildEffect, GETBuildPosition(), Quaternion.identity);
+        GameObject effect = InstantiateSM(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        
         Destroy(effect, 5f);
     }
 
-    public Vector3 GETBuildPosition()
+    public Vector3 GetBuildPosition()
     {
         return transform.position + positionOffset;
     }
@@ -83,14 +79,14 @@ public class Node : MonoBehaviour
     {
         _rend = GetComponent<Renderer>();
         startColor = _rend.material.color;
-        this._buildManager = BuildManager.Instance;
+        _buildManager = BuildManager.Instance;
     }
 
     public void SellTurret()
     {
         PlayerStats.Money += turretBlueprint.GetSellAmount();
 
-        GameObject effect = (GameObject) Instantiate(_buildManager.sellEffect, GETBuildPosition(), Quaternion.identity);
+        GameObject effect = Instantiate(_buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
 
         Destroy(turret);
@@ -113,8 +109,17 @@ public class Node : MonoBehaviour
             _rend.material.color = notEnoughMoneyColor;
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
         _rend.material.color = startColor;
+    }
+
+    // For instantiating GameObjects weather the player is in multiplayer mode or Single-player
+    private GameObject InstantiateSM(GameObject inst, Vector3 position, Quaternion rotation)
+    { 
+        return PhotonNetwork.IsConnected && PhotonNetwork.InRoom
+            ? PhotonNetwork.Instantiate(inst.name, position, rotation)
+            : Instantiate(inst, position, rotation);
+        
     }
 }

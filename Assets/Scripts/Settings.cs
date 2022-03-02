@@ -38,12 +38,11 @@ public class Settings : MonoBehaviour
         if (resolutionDd != null)
             resolutionDd.ClearOptions();
 
-        var resolutionsList = (from r in Screen.resolutions
-            select r.width
-                   + " x " + r.height
-                   + " " + r.refreshRate + "Hz").ToList();
-
+        var resolutionsList = (from r in Screen.resolutions 
+            select r.width + " x " + r.height + " " + r.refreshRate + "Hz").ToList();
+        
         resolutionDd.AddOptions(resolutionsList);
+        resolutionDd.value = PlayerPrefs.GetInt("resolutionIdx", 1);
 
         resolutionDd.RefreshShownValue();
     }
