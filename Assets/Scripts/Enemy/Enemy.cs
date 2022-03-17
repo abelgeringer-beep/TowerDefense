@@ -18,7 +18,7 @@ namespace Enemy
 
         [Header("Unity Stuff")] public Image healthBar;
 
-        private bool _isDead = false;
+        private bool _isDead;
 
         void Start()
         {
@@ -49,7 +49,7 @@ namespace Enemy
 
             PlayerStats.Money += worth;
 
-            GameObject effect = (GameObject) Instantiate(deathEffect, transform.position, Quaternion.identity);
+            GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(effect, 5f);
 
             WaveSpawner.EnemiesAlive--;

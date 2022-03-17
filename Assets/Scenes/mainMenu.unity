@@ -1908,6 +1908,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 30
+  shootingDistance: {fileID: -3981673533758677952, guid: b4b7f4d120a823e4dab8943baa0790f3,
+    type: 3}
   bulletPrefab: {fileID: 8406248573331194409, guid: 030cab7e91f912d4c828aac3fe95238f,
     type: 3}
   fireRate: 0.25

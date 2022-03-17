@@ -4,40 +4,85 @@ namespace Managers
 {
     internal class CameraControl : MonoBehaviour
     {
-        public float panSpeed = 30f;
-        public float panBoarderThickness = 10f;
-        public float scrollSpeed = 5f;
-        public float minY = 10f;
-        public float maxY = 80f;
+        public Transform cameraTransform;
+
+        public float movementSpeed;
+        public float movementTime;
+        public float rotationAmount;
+        public Vector3 zoomAmount;
+        public float boarderThickness;
+        public float minY;
+        public float maxY;
+
+        private Quaternion _newRotation;
+        private Quaternion _originalRotation;
+        private Vector3 _newPosition;
+        private Vector3 _newCameraZoom;
+
+        private void Start()
+        {
+            var t = transform;
+            _newPosition = t.position;
+            _originalRotation = t.rotation;
+            _newRotation = _originalRotation;
+            _newCameraZoom = cameraTransform.position;
+        }
 
         private void Update()
         {
             if (GameMaster.GameIsOver)
             {
-                this.enabled = false;
+                enabled = false;
                 return;
             }
 
-            if ((Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBoarderThickness) &&
-                transform.position.z <= 75)
-                transform.Translate(Vector3.forward * (panSpeed * Time.deltaTime),
-                    Space.World); // Ignore the rotation of camera
+            HandleMovement();
 
-            if ((Input.GetKey("a") || Input.mousePosition.x <= panBoarderThickness) && transform.position.x >= -50)
-                transform.Translate(Vector3.left * (panSpeed * Time.deltaTime), Space.World);
+            transform.position = Vector3.Lerp(transform.position, _newPosition, Time.deltaTime * movementTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, _newRotation, Time.deltaTime * movementTime);
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, _newCameraZoom,
+                                                            Time.deltaTime * movementTime);
+        }
 
-            if ((Input.GetKey("s") || Input.mousePosition.y <= panBoarderThickness) && transform.position.z >= -20)
-                transform.Translate(Vector3.back * (panSpeed * Time.deltaTime), Space.World);
+        private void LateUpdate()
+        {
+            HandleZoom();
+        }
 
-            if ((Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBoarderThickness) &&
-                transform.position.x <= 50)
-                transform.Translate(Vector3.right * (panSpeed * Time.deltaTime), Space.World);
+        private void HandleMovement()
+        {
+            if ((Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - boarderThickness) &&
+                cameraTransform.position.z <= 40)
+                _newPosition += Vector3.forward * movementSpeed;
 
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            Vector3 pos = transform.position; // own position
-            pos.y -= scroll * 10 * scrollSpeed; //scrollweel speed is very low
-            pos.y = Mathf.Clamp(pos.y, minY, maxY);
-            transform.position = pos;
+            if ((Input.GetKey(KeyCode.A) || Input.mousePosition.x <= boarderThickness) && _newPosition.x >= -50)
+                _newPosition += Vector3.left * movementSpeed;
+
+            if ((Input.GetKey(KeyCode.S) || Input.mousePosition.y <= boarderThickness)
+                        && cameraTransform.position.z >= -10)
+                _newPosition += Vector3.back * movementSpeed;
+
+            if ((Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - boarderThickness) &&
+                _newPosition.x <= 50)
+                _newPosition += Vector3.right * movementSpeed;
+
+            if (Input.GetKey(KeyCode.Q))
+                _newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
+
+            if (Input.GetKey(KeyCode.E))
+                _newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
+
+            if (Input.GetKey(KeyCode.Space))
+                _newRotation = _originalRotation;
+        }
+
+        private void HandleZoom()
+        {
+            if (Input.GetKey(KeyCode.R) && cameraTransform.position.y >= minY)
+                _newCameraZoom += zoomAmount;
+
+            if (Input.GetKey(KeyCode.F) && cameraTransform.position.y <= maxY)
+                _newCameraZoom -= zoomAmount;
         }
     }
 }

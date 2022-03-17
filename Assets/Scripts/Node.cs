@@ -49,7 +49,7 @@ public class Node : MonoBehaviour
         
         GameObject effect = InstantiateSM(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
-
+        
         isUpgraded = true;
     }
 
