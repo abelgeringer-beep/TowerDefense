@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+namespace Factory;
+
 public abstract class GameObjectFactory : ScriptableObject
 {
     private Scene _scene;

@@ -79,10 +79,7 @@ namespace Enemy
 
         private void SpawnEnemy(GameObject enemy)
         {
-            if(PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
-                PhotonNetwork.Instantiate(enemy.name, spawnPoint.position, spawnPoint.rotation);
-            else if(!PhotonNetwork.IsConnected)
-                Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+            PhotonNetwork.Instantiate(enemy.name, spawnPoint.position, spawnPoint.rotation);
         }
     }
 }

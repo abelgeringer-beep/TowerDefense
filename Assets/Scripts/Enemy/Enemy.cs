@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Enemy
@@ -43,18 +44,19 @@ namespace Enemy
             speed = startSpeed * (1f - pct);
         }
 
-        void Die()
+        private void Die()
         {
             _isDead = true;
 
             PlayerStats.Money += worth;
 
-            GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 5f);
+            GameObject effect = PhotonNetwork.Instantiate(deathEffect.name, transform.position, Quaternion.identity);
+            System.Threading.Thread.Sleep(5000);
+            PhotonNetwork.Destroy(effect);
 
             WaveSpawner.EnemiesAlive--;
 
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }

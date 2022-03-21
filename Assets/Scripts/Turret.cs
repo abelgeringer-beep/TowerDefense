@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
@@ -126,7 +127,7 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGo = PhotonNetwork.Instantiate(bulletPrefab.name, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
         if (bullet == null) return;

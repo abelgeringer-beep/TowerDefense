@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         
         if (_target == null && !isRocket)
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
             return;
         }
         
@@ -70,10 +70,10 @@ public class Bullet : MonoBehaviour
 
     private void HitTarget()
     {
-        GameObject effectIns =  PhotonNetwork.IsConnected && PhotonNetwork.InRoom 
-            ? PhotonNetwork.Instantiate(impactEffect.name, transform.position, transform.rotation)
-            : Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectIns, 5f);
+        GameObject effectIns = PhotonNetwork.Instantiate(impactEffect.name, transform.position, transform.rotation);
+        
+        System.Threading.Thread.Sleep(5000);
+        PhotonNetwork.Destroy(effectIns);
 
         if (explosionRadius > 0f)
             Explode();
@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour
         else 
             Damage(_target);
 
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     private void Explode()
@@ -101,7 +101,6 @@ public class Bullet : MonoBehaviour
         Enemy.Enemy e = enemy.GetComponent<Enemy.Enemy>();
         if (e != null)
             e.TakeDamage(damage);
-        
     }
     
     private void OnDrawGizmosSelected()

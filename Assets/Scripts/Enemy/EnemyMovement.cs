@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -47,7 +48,7 @@ namespace Enemy
         {
             PlayerStats.Lives--;
             WaveSpawner.EnemiesAlive--;
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }
