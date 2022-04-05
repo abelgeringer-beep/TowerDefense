@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
@@ -27,11 +28,14 @@ public class Turret : MonoBehaviour
 
     public void Start()
     {
-        shootingDistance.enabled = false;
+        if(shootingDistance)
+            shootingDistance.enabled = false;
+        
         DrawShootingDistance();
-        InvokeRepeating(nameof(UpdateTarget), 0f, 0.25f);
+        InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
     }
 
+    [PunRPC]
     public void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -59,6 +63,7 @@ public class Turret : MonoBehaviour
         }
     }
 
+    [PunRPC]
     private void LockOnTarget()
     {
         Vector3 direction = target.position - transform.position;
@@ -67,6 +72,7 @@ public class Turret : MonoBehaviour
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
+    [PunRPC]
     private void Leaser()
     {
         _targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
@@ -122,15 +128,19 @@ public class Turret : MonoBehaviour
         }
     }
 
+    [PunRPC]
     private void Shoot()
     {
-        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGo = PhotonNetwork.Instantiate(bulletPrefab.name, firePoint.position, firePoint.rotation);
+        
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
-        if (bullet != null)
-        {
-            bullet.Seek(target);
-        }
+        if (bullet == null) return;
+        
+        if (bullet.isRocket)
+            bullet.SetRange(range);
+        
+        bullet.Seek(target);
     }
 
     private void OnMouseEnter()
@@ -145,10 +155,10 @@ public class Turret : MonoBehaviour
 
     private void DrawShootingDistance()
     {
-        const int steps = 150;
+        const short steps = 150;
         shootingDistance.positionCount = steps;
 
-        for (int i = 0; i < steps; i++)
+        for (short i = 0; i < steps; i++)
         {
             float circumferenceProgress = (float) i / steps;
             float currentRadiant = circumferenceProgress * 2 * Mathf.PI;
@@ -159,7 +169,7 @@ public class Turret : MonoBehaviour
                 Mathf.Sin(currentRadiant) * range
             );
             currentPosition.y += 0.5f;
-            shootingDistance.SetPosition(i, currentPosition + transform.position );
+            shootingDistance.SetPosition(i, currentPosition + transform.position);
         }
     }
 }

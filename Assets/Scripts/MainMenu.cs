@@ -1,4 +1,6 @@
-﻿using UI;
+﻿using System;
+using Photon.Pun;
+using UI;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -9,6 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
+        PhotonNetwork.OfflineMode = true;
         sceneFader.FadeTo(levelToLoad);
     }
 
@@ -29,11 +32,13 @@ public class MainMenu : MonoBehaviour
 
     public void Multiplayer()
     {
+        PhotonNetwork.OfflineMode = false;
         sceneFader.FadeTo("MultiplayerMenu");
     }
 
-    public void CustomMaps()
+    public void InfiniteWaves()
     {
-        sceneFader.FadeTo("CustomMap01");
+        PhotonNetwork.OfflineMode = true;
+        sceneFader.FadeTo("InfiniteWaves");
     }
 }

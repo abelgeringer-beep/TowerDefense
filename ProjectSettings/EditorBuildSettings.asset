@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MultiplayerMenu.unity
     guid: 93527398f73fbfe45a5380efc6c4b8da
+  - enabled: 1
+    path: Assets/Scenes/Levels/InfiniteWaves.unity
+    guid: 7067074aa7a44b546a1850932680975a
   m_configObjects: {}

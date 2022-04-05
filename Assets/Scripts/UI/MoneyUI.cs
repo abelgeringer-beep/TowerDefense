@@ -1,15 +1,15 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 namespace UI
 {
     public class MoneyUI : MonoBehaviour
     {
-        public Text moneyText;
+        public TextMeshProUGUI moneyText;
 
         public void Update()
         {
-            moneyText.text = "$" + PlayerStats.Money.ToString();
+            moneyText.text = "$" + PlayerStats.Money;
         }
     }
 }
