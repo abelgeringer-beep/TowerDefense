@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6704458256760687840}
   - component: {fileID: 6704458256760687841}
   - component: {fileID: 6704458256760687842}
-  - component: {fileID: 1195335974158757389}
-  - component: {fileID: -6524268987290971603}
+  - component: {fileID: 4601060299124872255}
+  - component: {fileID: 9083284124012370680}
   m_Layer: 0
   m_Name: EnemyDeathEffect_Simple_1
   m_TagString: Untagged
@@ -4884,7 +4884,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1195335974158757389
+--- !u!114 &4601060299124872255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4906,7 +4906,7 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-6524268987290971603
+--- !u!114 &9083284124012370680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

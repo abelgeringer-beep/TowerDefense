@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3685907806660600979}
   - component: {fileID: 3685907806660600978}
   - component: {fileID: 3685907806660600977}
-  - component: {fileID: -5209163650663215217}
+  - component: {fileID: -4494262510372941889}
   m_Layer: 0
   m_Name: LeaserImpactEffect
   m_TagString: Untagged
@@ -4892,7 +4892,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-5209163650663215217
+--- !u!114 &-4494262510372941889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

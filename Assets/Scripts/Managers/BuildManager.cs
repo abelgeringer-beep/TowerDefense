@@ -5,7 +5,7 @@ namespace Managers
 {
     public class BuildManager : MonoBehaviour
     {
-        public static BuildManager Instance; // Singleton pattern
+        public static BuildManager Instance;
 
         public GameObject buildEffect;
 
@@ -23,7 +23,6 @@ namespace Managers
         {
             if (Instance != null)
             {
-                Debug.Log("More than one BuildManager");
                 return;
             }
 

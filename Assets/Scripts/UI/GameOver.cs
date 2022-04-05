@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -8,6 +9,11 @@ namespace UI
         public SceneFader sceneFader;
 
         public string menuSceneName = "mainMenu";
+
+        public void Awake()
+        {
+            sceneFader.gameObject.SetActive(true);
+        }
 
         public void Retry()
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1220024117397417133}
   - component: {fileID: 1220024117397417132}
   - component: {fileID: 1220024117397417135}
-  - component: {fileID: -932338187083679489}
+  - component: {fileID: 3427232736979945234}
   m_Layer: 0
   m_Name: MissleExplosionEffect
   m_TagString: Untagged
@@ -4885,7 +4885,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-932338187083679489
+--- !u!114 &3427232736979945234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 4513470301282891332}
   - component: {fileID: 6411327929650702027}
   - component: {fileID: -3145550128183955908}
-  - component: {fileID: 4541592442198775355}
-  - component: {fileID: -1331491179702551975}
+  - component: {fileID: 8246779302460598554}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -112,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54347fb02a3eedb45a3cf6f8f1204b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 0}
-  notEnoughMoneyColor: {r: 0, g: 0, b: 0, a: 0}
+  hoverColor: {r: 0.45553997, g: 1, b: 0.43867922, a: 0}
+  notEnoughMoneyColor: {r: 1, g: 0.3915094, b: 0.45150945, a: 1}
   startColor: {r: 1, g: 1, b: 1, a: 0}
   positionOffset: {x: 0, y: 0, z: 0}
   turret: {fileID: 0}
@@ -123,29 +122,7 @@ MonoBehaviour:
     upgradedPrefab: {fileID: 0}
     upgradeCost: 0
   isUpgraded: 0
---- !u!114 &4541592442198775355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827332375791570164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &-1331491179702551975
+--- !u!114 &8246779302460598554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

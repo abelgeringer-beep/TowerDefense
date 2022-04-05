@@ -35,6 +35,7 @@ public class Turret : MonoBehaviour
         InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
     }
 
+    [PunRPC]
     public void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -62,6 +63,7 @@ public class Turret : MonoBehaviour
         }
     }
 
+    [PunRPC]
     private void LockOnTarget()
     {
         Vector3 direction = target.position - transform.position;
@@ -70,6 +72,7 @@ public class Turret : MonoBehaviour
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
+    [PunRPC]
     private void Leaser()
     {
         _targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
@@ -125,9 +128,11 @@ public class Turret : MonoBehaviour
         }
     }
 
+    [PunRPC]
     private void Shoot()
     {
         GameObject bulletGo = PhotonNetwork.Instantiate(bulletPrefab.name, firePoint.position, firePoint.rotation);
+        
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
         if (bullet == null) return;

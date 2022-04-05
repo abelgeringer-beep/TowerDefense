@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3082064675534167936}
   - component: {fileID: 3739086347166498169}
   - component: {fileID: 3910258660267232229}
-  - component: {fileID: -8555029781237046552}
+  - component: {fileID: 5361740939395042445}
   m_Layer: 0
   m_Name: SellEffect
   m_TagString: Untagged
@@ -4884,7 +4884,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &-8555029781237046552
+--- !u!114 &5361740939395042445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

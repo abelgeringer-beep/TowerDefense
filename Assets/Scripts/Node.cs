@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System.Collections;
+using Managers;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,7 @@ public class Node : MonoBehaviour
     private Renderer _rend;
     private BuildManager _buildManager;
 
+    [PunRPC]
     private void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -31,43 +33,45 @@ public class Node : MonoBehaviour
         if (!_buildManager.CanBuild)
             return;
 
-        BuildTurret(_buildManager.GetTurretToBuild());
+        StartCoroutine(BuildTurret(_buildManager.GetTurretToBuild()));
     }
 
-    public void UpgradeTurret()
+    [PunRPC]
+    public IEnumerator UpgradeTurret()
     {
         if (PlayerStats.Money < turretBlueprint.upgradeCost)
-            return;
+            yield break;
 
         PlayerStats.Money -= turretBlueprint.upgradeCost;
 
         PhotonNetwork.Destroy(this.turret);
-
+        
         GameObject turret = PhotonNetwork.Instantiate(turretBlueprint.upgradedPrefab.name, GetBuildPosition(), Quaternion.identity);
         
         this.turret = turret;
         
         GameObject effect = PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity);
-        System.Threading.Thread.Sleep(5000);
-        PhotonNetwork.Destroy(effect);
+        yield return new WaitForSeconds(5f);
         
         isUpgraded = true;
     }
 
-    private void BuildTurret(TurretBlueprint blueprint)
+    [PunRPC]
+    private IEnumerator BuildTurret(TurretBlueprint blueprint)
     {
-        if (PlayerStats.Money < blueprint.cost)
-            return;
-
+        if (PlayerStats.Money < blueprint.cost) 
+            yield break;
+        
         PlayerStats.Money -= blueprint.cost;
         GameObject turret = PhotonNetwork.Instantiate(blueprint.prefab.name, GetBuildPosition(), Quaternion.identity);
-
+        
         this.turret = turret;
 
         turretBlueprint = blueprint;
 
-        GameObject effect = PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity);
-        System.Threading.Thread.Sleep(5000);
+        GameObject effect =
+            PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity);
+        yield return new WaitForSeconds(5f);
         PhotonNetwork.Destroy(effect);
     }
 
@@ -83,19 +87,21 @@ public class Node : MonoBehaviour
         _buildManager = BuildManager.Instance;
     }
 
-    public void SellTurret()
+    [PunRPC]
+    public IEnumerator SellTurret()
     {
         PlayerStats.Money += turretBlueprint.GetSellAmount();
-
-        GameObject effect = Instantiate(_buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
-        System.Threading.Thread.Sleep(5000);
-        PhotonNetwork.Destroy(effect);
 
         PhotonNetwork.Destroy(turret);
         turretBlueprint = null;
         isUpgraded = false;
+        
+        GameObject effect = Instantiate(_buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
+        yield return new WaitForSeconds(5f);
+        PhotonNetwork.Destroy(effect);
     }
 
+    [PunRPC]
     private void OnMouseEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -107,6 +113,7 @@ public class Node : MonoBehaviour
         _rend.material.color = _buildManager.HasMoney ? hoverColor : notEnoughMoneyColor;
     }
 
+    [PunRPC]
     private void OnMouseExit()
     {
         _rend.material.color = startColor;

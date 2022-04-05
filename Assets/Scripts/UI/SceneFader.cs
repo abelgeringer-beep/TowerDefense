@@ -9,9 +9,10 @@ namespace UI
     {
         public Image img;
         public AnimationCurve curve;
-
+        
         private void Start()
         {
+            Time.timeScale = 1f;
             StartCoroutine(FadeIn());
         }
 
@@ -22,11 +23,11 @@ namespace UI
 
         IEnumerator FadeIn()
         {
-            float t = 1f; // time
+            float t = 1f; 
             img.enabled = true;
             while (t > 0f)
             {
-                t -= Time.deltaTime; // because of IEnumerator we can do this alltho it isn't an Update method
+                t -= Time.deltaTime; 
                 float a = curve.Evaluate(t);
                 img.color = new Color(0f, 0f, 0f, a);
                 yield return 0;
@@ -35,15 +36,14 @@ namespace UI
 
         IEnumerator FadeOut(string scene)
         {
-            float t = 0f; // time
+            float t = 0f;
             while (t < 1f)
             {
-                t += Time.deltaTime; // because of IEnumerator we can do this alltho it isn't an Update method
+                t += Time.deltaTime;
                 float a = curve.Evaluate(t);
                 img.color = new Color(0f, 0f, 0f, a);
                 yield return 0;
             }
-
             SceneManager.LoadScene(scene);
         }
     }

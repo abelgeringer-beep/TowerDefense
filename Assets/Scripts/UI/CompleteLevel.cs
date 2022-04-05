@@ -11,6 +11,11 @@ namespace UI
 
         public string menuSceneName = "mainMenu";
 
+        public void Awake()
+        {
+            sceneFader.gameObject.SetActive(true);
+        }
+        
         public void Continue()
         {
             PlayerPrefs.SetInt("levelReached", levelToUnlock);

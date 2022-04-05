@@ -63,12 +63,11 @@ namespace Enemy
             PlayerStats.Rounds++;
             waveCount.text = "Wave: " + (_waveIndex + 1);
 
-            var wave = waves[_waveIndex];
+            Wave wave = waves[_waveIndex];
 
             EnemiesAlive = wave.count;
 
-            var i = 0;
-            for (; i < wave.count; i++)
+            for (int i = 0; i < wave.count; i++)
             {
                 SpawnEnemy(wave.enemy);
                 yield return new WaitForSeconds(1f / wave.rate);

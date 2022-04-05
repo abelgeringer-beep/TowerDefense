@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections;
+using Managers;
 using Photon.Pun;
 using UnityEngine;
 
@@ -26,16 +27,16 @@ public class Bullet : MonoBehaviour
 
     public void Update()
     {
+        if (_target == null && !isRocket)
+        {
+            PhotonNetwork.Destroy(gameObject);
+            return;
+        }
+        
         if (_target == null && isRocket)
         {
             FindNewEnemy();
             CircleRocket();
-            return;
-        }
-        
-        if (_target == null && !isRocket)
-        {
-            PhotonNetwork.Destroy(gameObject);
             return;
         }
         
@@ -55,8 +56,8 @@ public class Bullet : MonoBehaviour
 
     private void CircleRocket()
     {
-        transform.Translate(-0.3f, 0, 0);
-        transform.Rotate(0, 2f, 0);
+        transform.Translate(-0.1f, 0, 0);
+        transform.Rotate(0, 1f, 0);
     }
 
     private void FindNewEnemy()
@@ -71,9 +72,6 @@ public class Bullet : MonoBehaviour
     private void HitTarget()
     {
         GameObject effectIns = PhotonNetwork.Instantiate(impactEffect.name, transform.position, transform.rotation);
-        
-        System.Threading.Thread.Sleep(5000);
-        PhotonNetwork.Destroy(effectIns);
 
         if (explosionRadius > 0f)
             Explode();
@@ -81,6 +79,7 @@ public class Bullet : MonoBehaviour
         else 
             Damage(_target);
 
+        CoroutineManager.Instance.DestroyGameObject(effectIns, 5f);
         PhotonNetwork.Destroy(gameObject);
     }
 

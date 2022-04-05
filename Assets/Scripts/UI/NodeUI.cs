@@ -43,13 +43,13 @@ namespace UI
 
         public void Upgrade()
         {
-            _target.UpgradeTurret();
+            StartCoroutine(_target.UpgradeTurret());
             BuildManager.Instance.DeselectNode();
         }
 
         public void Sell()
         {
-            _target.SellTurret();
+            StartCoroutine(_target.SellTurret());
             BuildManager.Instance.DeselectNode();
         }
     }

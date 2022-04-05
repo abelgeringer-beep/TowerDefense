@@ -4,29 +4,14 @@ namespace Managers
 {
     internal class CameraControl : MonoBehaviour
     {
-        public Transform cameraTransform;
+        public Transform transform;
 
-        public float movementSpeed;
-        public float movementTime;
-        public float rotationAmount;
-        public Vector3 zoomAmount;
-        public float boarderThickness;
-        public float minY;
-        public float maxY;
+        public float panSpeed = 30f;
+        public float panBorderThickness = 10f;
 
-        private Quaternion _newRotation;
-        private Quaternion _originalRotation;
-        private Vector3 _newPosition;
-        private Vector3 _newCameraZoom;
-
-        private void Start()
-        {
-            var t = transform;
-            _newPosition = t.position;
-            _originalRotation = t.rotation;
-            _newRotation = _originalRotation;
-            _newCameraZoom = cameraTransform.position;
-        }
+        public float scrollSpeed = 5f;
+        public float minY = 20f;
+        public float maxY = 80f;
 
         private void Update()
         {
@@ -36,53 +21,32 @@ namespace Managers
                 return;
             }
 
-            HandleMovement();
+            if (Input.GetKey("w"))
+            {
+                transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
+            }
+            if (Input.GetKey("s"))
+            {
+                transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
+            }
+            if (Input.GetKey("d"))
+            {
+                transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
+            }
+            if (Input.GetKey("a"))
+            {
+                transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
+            }
 
-            transform.position = Vector3.Lerp(transform.position, _newPosition, Time.deltaTime * movementTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, _newRotation, Time.deltaTime * movementTime);
-            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, _newCameraZoom,
-                                                            Time.deltaTime * movementTime);
-        }
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        private void LateUpdate()
-        {
-            HandleZoom();
-        }
+            Vector3 pos = transform.position;
 
-        private void HandleMovement()
-        {
-            if ((Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - boarderThickness) &&
-                cameraTransform.position.z <= 40)
-                _newPosition += Vector3.forward * movementSpeed;
+            pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+            pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
-            if ((Input.GetKey(KeyCode.A) || Input.mousePosition.x <= boarderThickness) && _newPosition.x >= -50)
-                _newPosition += Vector3.left * movementSpeed;
-
-            if ((Input.GetKey(KeyCode.S) || Input.mousePosition.y <= boarderThickness)
-                        && cameraTransform.position.z >= -10)
-                _newPosition += Vector3.back * movementSpeed;
-
-            if ((Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - boarderThickness) &&
-                _newPosition.x <= 50)
-                _newPosition += Vector3.right * movementSpeed;
-
-            if (Input.GetKey(KeyCode.Q))
-                _newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
-
-            if (Input.GetKey(KeyCode.E))
-                _newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
-
-            if (Input.GetKey(KeyCode.Space))
-                _newRotation = _originalRotation;
-        }
-
-        private void HandleZoom()
-        {
-            if (Input.GetKey(KeyCode.R) && cameraTransform.position.y >= minY)
-                _newCameraZoom += zoomAmount;
-
-            if (Input.GetKey(KeyCode.F) && cameraTransform.position.y <= maxY)
-                _newCameraZoom -= zoomAmount;
+            transform.position = pos;
+                                                            
         }
     }
 }

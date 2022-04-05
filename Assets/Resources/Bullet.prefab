@@ -12,15 +12,14 @@ GameObject:
   - component: {fileID: 6178476037157986310}
   - component: {fileID: 1653812412006215572}
   - component: {fileID: -3203672284210768449}
-  - component: {fileID: 1500170811233653479}
-  - component: {fileID: -247169657621522935}
+  - component: {fileID: 2219480294498341886}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1112989361860313146
 Transform:
   m_ObjectHideFlags: 0
@@ -103,29 +102,8 @@ MonoBehaviour:
     type: 3}
   damage: 50
   explosionRadius: 0
---- !u!114 &1500170811233653479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358109430107068939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &-247169657621522935
+  isRocket: 0
+--- !u!114 &2219480294498341886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

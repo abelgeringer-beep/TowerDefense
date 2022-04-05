@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using Managers;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +8,7 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
+        public new string name;
         public float startSpeed = 10f;
 
         [HideInInspector] public float speed;
@@ -50,12 +53,10 @@ namespace Enemy
 
             PlayerStats.Money += worth;
 
-            GameObject effect = PhotonNetwork.Instantiate(deathEffect.name, transform.position, Quaternion.identity);
-            System.Threading.Thread.Sleep(5000);
-            PhotonNetwork.Destroy(effect);
-
             WaveSpawner.EnemiesAlive--;
 
+            CoroutineManager.Instance.DestroyGameObject(deathEffect, 5f);
+            
             PhotonNetwork.Destroy(gameObject);
         }
     }

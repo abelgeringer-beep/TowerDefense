@@ -41,6 +41,18 @@ MonoBehaviour:
   - RespawnSpaceship
   - Update
   - Menu
+  - BuildTurret
+  - Leaser
+  - LockOnTarget
+  - OnMouseDown
+  - OnMouseEnter
+  - OnMouseExit
+  - SellTurret
+  - Shoot
+  - UpdateTarget
+  - UpgradeTurret
+  - Restart
+  - Toggle
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

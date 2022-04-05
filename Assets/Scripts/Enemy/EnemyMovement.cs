@@ -21,15 +21,14 @@ namespace Enemy
         private void Update()
         {
             var direction = _target.position - transform.position;
-            transform.Translate(translation: direction.normalized * (_enemy.speed * Time.deltaTime),
-                Space.World); // deltaTime -> not to depend on fps but time
+            transform.Translate(direction.normalized * (_enemy.speed * Time.deltaTime),  Space.World);
 
             if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
             {
                 GetNextWayPoint();
             }
 
-            _enemy.speed = _enemy.startSpeed; // don't want to go slow after it's not a target of the leaser
+            _enemy.speed = _enemy.startSpeed;
         }
 
         private void GetNextWayPoint()
