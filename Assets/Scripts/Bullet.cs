@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Managers;
+using Photon.Pun;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -6,24 +9,40 @@ public class Bullet : MonoBehaviour
     public float speed = 20f;
     public GameObject impactEffect;
     public int damage = 50;
-    public float explosionRadius = 0f;
+    public float explosionRadius;
+    public bool isRocket;
 
+    private float _range;
+    private float _timeCounter;
+
+    public void SetRange(float r)
+    {
+        _range = r;
+    }
+    
     public void Seek(Transform target)
     {
-        this._target = target;
+        _target = target;
     }
 
     public void Update()
     {
-        if (_target == null)
+        if (_target == null && !isRocket)
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
             return;
         }
-
-        Vector3 direction = _target.position - transform.position;
+        
+        if (_target == null && isRocket)
+        {
+            FindNewEnemy();
+            CircleRocket();
+            return;
+        }
+        
         float distanceThisFrame = speed * Time.deltaTime;
-
+        Vector3 direction = _target.position - transform.position;
+        
         if (direction.magnitude <= distanceThisFrame)
         {
             HitTarget();
@@ -32,34 +51,46 @@ public class Bullet : MonoBehaviour
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
         transform.LookAt(_target);
+        transform.Rotate(0, 90, 0);
+    }
+
+    private void CircleRocket()
+    {
+        transform.Translate(-0.1f, 0, 0);
+        transform.Rotate(0, 1f, 0);
+    }
+
+    private void FindNewEnemy()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _range);
+        foreach (Collider c in colliders)
+            if (c.CompareTag("Enemy"))
+                _target = c.transform;
+        
     }
 
     private void HitTarget()
     {
-        GameObject effectIns = (GameObject) Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectIns, 5f);
+        GameObject effectIns = PhotonNetwork.Instantiate(impactEffect.name, transform.position, transform.rotation);
 
         if (explosionRadius > 0f)
-        {
             Explode();
-        }
-        else
-        {
+        
+        else 
             Damage(_target);
-        }
 
-        Destroy(gameObject);
+        CoroutineManager.Instance.DestroyGameObject(effectIns, 5f);
+        PhotonNetwork.Destroy(gameObject);
     }
 
-    void Explode()
+    private void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        // gets all the objects within the radius of the position
-        foreach (Collider collider in colliders)
+        foreach (Collider c in colliders)
         {
-            if (collider.CompareTag("Enemy")) // if the collider has a tag named Enemy, than damage it
+            if (c.CompareTag("Enemy"))
             {
-                Damage(collider.transform);
+                Damage(c.transform);
             }
         }
     }
@@ -68,12 +99,9 @@ public class Bullet : MonoBehaviour
     {
         Enemy.Enemy e = enemy.GetComponent<Enemy.Enemy>();
         if (e != null)
-        {
             e.TakeDamage(damage);
-        }
     }
-
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

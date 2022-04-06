@@ -9,7 +9,7 @@ namespace UI
 
         private void Update()
         {
-            livesText.text = PlayerStats.Lives.ToString() + "Lives";
+            livesText.text = PlayerStats.Lives + "Lives";
         }
     }
 }

@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
     private Enemy.Enemy _targetEnemy;
-    private float _fireCountdown = 0f;
+    private float _fireCountdown;
 
     [Header("General")] public float range = 20f;
+    public LineRenderer shootingDistance;
 
     [Header("Use Bullets")] public GameObject bulletPrefab;
     public float fireRate = 1f;
 
-    [Header("Use Leaser")] public bool useLeaser = false;
+    [Header("Use Leaser")] public bool useLeaser;
     public LineRenderer lineRenderer;
     public ParticleSystem impactEffect;
     public Light impactLight;
@@ -21,14 +23,20 @@ public class Turret : MonoBehaviour
     public string enemyTag = "Enemy";
     public Transform partToRotate;
     public float turnSpeed = 10f;
+
     public Transform firePoint;
 
-    void Start()
+    public void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        if(shootingDistance)
+            shootingDistance.enabled = false;
+        
+        DrawShootingDistance();
+        InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
     }
 
-    void UpdateTarget()
+    [PunRPC]
+    public void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
@@ -55,7 +63,8 @@ public class Turret : MonoBehaviour
         }
     }
 
-    void LockOnTarget()
+    [PunRPC]
+    private void LockOnTarget()
     {
         Vector3 direction = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -63,7 +72,8 @@ public class Turret : MonoBehaviour
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    void Leaser()
+    [PunRPC]
+    private void Leaser()
     {
         _targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
         _targetEnemy.Slow(slowPercentage);
@@ -83,7 +93,7 @@ public class Turret : MonoBehaviour
         impactEffect.transform.rotation = Quaternion.LookRotation(direction);
     }
 
-    void Update()
+    private void Update()
     {
         if (target == null)
         {
@@ -118,20 +128,48 @@ public class Turret : MonoBehaviour
         }
     }
 
-    void Shoot()
+    [PunRPC]
+    private void Shoot()
     {
-        GameObject bulletGO = (GameObject) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        GameObject bulletGo = PhotonNetwork.Instantiate(bulletPrefab.name, firePoint.position, firePoint.rotation);
+        
+        Bullet bullet = bulletGo.GetComponent<Bullet>();
 
-        if (bullet != null)
-        {
-            bullet.Seek(target);
-        }
+        if (bullet == null) return;
+        
+        if (bullet.isRocket)
+            bullet.SetRange(range);
+        
+        bullet.Seek(target);
     }
 
-    void OnDrawGizmosSelected()
+    private void OnMouseEnter()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        shootingDistance.enabled = true;
+    }
+
+    private void OnMouseExit()
+    {
+        shootingDistance.enabled = false;
+    }
+
+    private void DrawShootingDistance()
+    {
+        const short steps = 150;
+        shootingDistance.positionCount = steps;
+
+        for (short i = 0; i < steps; i++)
+        {
+            float circumferenceProgress = (float) i / steps;
+            float currentRadiant = circumferenceProgress * 2 * Mathf.PI;
+
+            Vector3 currentPosition = new Vector3(
+                Mathf.Cos(currentRadiant) * range,
+                0,
+                Mathf.Sin(currentRadiant) * range
+            );
+            currentPosition.y += 0.5f;
+            shootingDistance.SetPosition(i, currentPosition + transform.position);
+        }
     }
 }

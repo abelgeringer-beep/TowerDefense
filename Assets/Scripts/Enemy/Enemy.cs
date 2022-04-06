@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Managers;
+using Photon.Pun;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
+        public new string name;
         public float startSpeed = 10f;
 
         [HideInInspector] public float speed;
@@ -18,7 +22,7 @@ namespace Enemy
 
         [Header("Unity Stuff")] public Image healthBar;
 
-        private bool _isDead = false;
+        private bool _isDead;
 
         void Start()
         {
@@ -43,18 +47,17 @@ namespace Enemy
             speed = startSpeed * (1f - pct);
         }
 
-        void Die()
+        private void Die()
         {
             _isDead = true;
 
             PlayerStats.Money += worth;
 
-            GameObject effect = (GameObject) Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 5f);
-
             WaveSpawner.EnemiesAlive--;
 
-            Destroy(gameObject);
+            CoroutineManager.Instance.DestroyGameObject(deathEffect, 5f);
+            
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }

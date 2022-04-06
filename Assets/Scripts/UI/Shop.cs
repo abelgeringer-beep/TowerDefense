@@ -6,14 +6,14 @@ namespace UI
     public class Shop : MonoBehaviour
     {
         public TurretBlueprint standardTurret;
-        public TurretBlueprint missleLauncher;
+        public TurretBlueprint missileLauncher;
         public TurretBlueprint leaserBeamer;
-
+        
         private BuildManager _buildManager;
 
         private void Start()
         {
-            this._buildManager = BuildManager.Instance;
+            _buildManager = BuildManager.Instance;
         }
 
         public void SelectStandardTurret()
@@ -23,7 +23,7 @@ namespace UI
 
         public void SelectMissleLauncherItem()
         {
-            _buildManager.SelectTurretToBuild(missleLauncher);
+            _buildManager.SelectTurretToBuild(missileLauncher);
         }
 
         public void SelectLeaserBeamer()

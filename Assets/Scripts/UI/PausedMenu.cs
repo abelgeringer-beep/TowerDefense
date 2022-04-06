@@ -7,7 +7,7 @@ namespace UI
     {
         public GameObject ui;
 
-        public string menuSceneName = "mainMenu";
+        private string menuSceneName = "mainMenu";
 
         public SceneFader sceneFader;
 
@@ -20,10 +20,9 @@ namespace UI
         public void Toggle()
         {
             ui.SetActive(!ui.activeSelf);
-
             Time.timeScale = ui.activeSelf ? 0f : 1f;
         }
-
+        
         public void Menu()
         {
             Toggle();

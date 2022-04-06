@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using Managers;
+using Photon.Pun;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Enemy
 {
@@ -15,9 +16,9 @@ namespace Enemy
 
         public float timeBetweenWaves = 5f;
         private float _countdown = 2f;
-        public Text waveCount;
-
-        public Text waveCountdownText;
+        
+        public TextMeshProUGUI waveCount;
+        public TextMeshProUGUI waveCountdownText;
 
         public GameMaster gameMaster;
 
@@ -29,7 +30,7 @@ namespace Enemy
             EnemiesAlive = 0;
             Time.timeScale = 1f;
         }
-
+        [PunRPC]
         private void Update()
         {
             if (EnemiesAlive > 0)
@@ -54,20 +55,19 @@ namespace Enemy
 
             _countdown = Mathf.Clamp(_countdown, 0f, Mathf.Infinity);
 
-            waveCountdownText.text = $"{_countdown:00.0}";
+            waveCountdownText.text = $"next wave in: {_countdown:00.0}";
         }
 
         private IEnumerator SpawnWave()
         {
             PlayerStats.Rounds++;
-            waveCount.text = (_waveIndex + 1).ToString();
+            waveCount.text = "Wave: " + (_waveIndex + 1);
 
-            var wave = waves[_waveIndex];
+            Wave wave = waves[_waveIndex];
 
             EnemiesAlive = wave.count;
 
-            var i = 0;
-            for (; i < wave.count; i++)
+            for (int i = 0; i < wave.count; i++)
             {
                 SpawnEnemy(wave.enemy);
                 yield return new WaitForSeconds(1f / wave.rate);
@@ -78,7 +78,7 @@ namespace Enemy
 
         private void SpawnEnemy(GameObject enemy)
         {
-            Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+            PhotonNetwork.Instantiate(enemy.name, spawnPoint.position, spawnPoint.rotation);
         }
     }
 }
