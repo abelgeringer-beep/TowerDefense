@@ -40,7 +40,7 @@ namespace Enemy
             if (_waveIndex == waves.Length)
             {
                 gameMaster.WinLevel();
-                this.enabled = false;
+                enabled = false;
             }
 
             if (_countdown <= 0f)
