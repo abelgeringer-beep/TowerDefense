@@ -17,7 +17,7 @@ public class Node : MonoBehaviour
 
     private Renderer _rend;
     private BuildManager _buildManager;
-
+    
     [PunRPC]
     private void OnMouseDown()
     {
@@ -52,6 +52,7 @@ public class Node : MonoBehaviour
         
         GameObject effect = PhotonNetwork.Instantiate(_buildManager.buildEffect.name, GetBuildPosition(), Quaternion.identity);
         yield return new WaitForSeconds(5f);
+        PhotonNetwork.Destroy(effect);
         
         isUpgraded = true;
     }

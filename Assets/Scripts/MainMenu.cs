@@ -1,5 +1,4 @@
-﻿using System;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UI;
 using UnityEngine;
 
@@ -22,6 +21,7 @@ public class MainMenu : MonoBehaviour
 
     public void Menu()
     {
+        Time.timeScale = 1f;
         sceneFader.FadeTo("mainMenu");
     }
 

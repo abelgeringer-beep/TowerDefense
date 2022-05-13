@@ -8,19 +8,20 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        public new string name;
-        public float startSpeed = 10f;
+        public static string Name;
+        public float startSpeed;
 
         [HideInInspector] public float speed;
 
-        public float startHealth = 100;
+        public float startHealth;
         private float _health;
 
-        public int worth = 50;
+        public int worth;
 
         public GameObject deathEffect;
 
-        [Header("Unity Stuff")] public Image healthBar;
+        [Header("Unity Stuff")]
+        public Image healthBar;
 
         private bool _isDead;
 

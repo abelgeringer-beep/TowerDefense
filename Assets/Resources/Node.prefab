@@ -115,6 +115,7 @@ MonoBehaviour:
   notEnoughMoneyColor: {r: 1, g: 0.3915094, b: 0.45150945, a: 1}
   startColor: {r: 1, g: 1, b: 1, a: 0}
   positionOffset: {x: 0, y: 0, z: 0}
+  nodePrefab: {fileID: 3827332375791570164}
   turret: {fileID: 0}
   turretBlueprint:
     prefab: {fileID: 0}
@@ -122,6 +123,9 @@ MonoBehaviour:
     upgradedPrefab: {fileID: 0}
     upgradeCost: 0
   isUpgraded: 0
+  gCost: 0
+  hCost: 0
+  fCost: 0
 --- !u!114 &8246779302460598554
 MonoBehaviour:
   m_ObjectHideFlags: 0
