@@ -47,7 +47,7 @@ public class MapGrid
         return cellGrid[x, z].isTaken;
     }
 
-    public Vector3 CalculateCordinatesFromIndex(int randomIndex)
+    public Vector3 CalculateCoordinatesFromIndex(int randomIndex)
     {
         int x = randomIndex % width;
         int z = randomIndex / length;
@@ -57,17 +57,17 @@ public class MapGrid
 
     public bool IsCellValid(float x, float z)
     {
-        return x <= width && x >= 0 && z >= 0 && z <= length ;
+        return x < width && x >= 0 && z < length && z>= 0;
     }
 
-    public int CalculateIndexFromCordinates(int x, int z)
+    public int CalculateIndexFromCoordinates(int x, int z)
     {
         return x + width * z;
     }
 
     public int CalculateIndexFromCordinates(float x, float z)
     {
-        return CalculateIndexFromCordinates((int) x, (int) z);
+        return CalculateIndexFromCoordinates((int) x, (int) z);
     }
 
     public void CheckCoordinates()

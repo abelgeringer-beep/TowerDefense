@@ -34,7 +34,6 @@ public class CandidateMap
             return false;
         
         int index = grid.CalculateIndexFromCordinates(position.x, position.z);
-
         return obstacles[index] == false;
     }
      
@@ -48,7 +47,7 @@ public class CandidateMap
 
             if (!obstacles[randomIndex])
             {
-                Vector3 coordinates = grid.CalculateCordinatesFromIndex(randomIndex);
+                Vector3 coordinates = grid.CalculateCoordinatesFromIndex(randomIndex);
                 if(coordinates == startPoint || coordinates == endPoint)
                     continue;
 
@@ -66,7 +65,6 @@ public class CandidateMap
         for(int i = 0; i < KnightPiece.possibleMoves.Count; ++i)
         {
             Vector3 newPosition = knight.position + KnightPiece.possibleMoves[i];
-            Debug.Log(grid.IsCellValid(newPosition.x, newPosition.z));
             if(grid.IsCellValid(newPosition.x, newPosition.z) && PositionCanBeObsitcle(newPosition))
             {
                 obstacles[grid.CalculateIndexFromCordinates(newPosition.x, newPosition.z)] = true;

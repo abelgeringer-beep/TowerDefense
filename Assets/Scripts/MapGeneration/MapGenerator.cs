@@ -23,8 +23,16 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-        grid = new MapGrid(width, length);
         gridVisualizer.VisualizerGrid(width, length);
+        GenerateNewMap();
+    }
+
+    public void GenerateNewMap()
+    {
+        mapVisualizer.ClearMap();
+
+        grid = new MapGrid(width, length);
+
         MapHelper.RandomlyChoseAndSetStartAndExitPoints(grid, ref startPosition, ref endPosition, randomPlacement, startEdge, exitEdge);
 
         CandidateMap candidateMap = new CandidateMap(grid, numberOfPieces);
