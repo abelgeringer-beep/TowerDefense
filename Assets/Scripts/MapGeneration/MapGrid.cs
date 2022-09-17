@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class MapGrid : MonoBehaviour
+public class MapGrid
 {
     public int width { get; }
     public int length { get; }
@@ -62,7 +62,7 @@ public class MapGrid : MonoBehaviour
 
     public int CalculateIndexFromCordinates(int x, int z)
     {
-        return x * width + z;
+        return x + width * z;
     }
 
     public int CalculateIndexFromCordinates(float x, float z)

@@ -42,6 +42,8 @@ public class MapVisualizer : MonoBehaviour
 
                 if (PlaceKnightObsticle(data, positionOnGrid))
                     continue;
+
+                CreateIndicator(positionOnGrid, Color.white, PrimitiveType.Cube);
             }
         }
     }
