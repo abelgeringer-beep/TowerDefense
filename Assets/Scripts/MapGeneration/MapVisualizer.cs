@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapVisualizer : MonoBehaviour
@@ -8,10 +9,12 @@ public class MapVisualizer : MonoBehaviour
 
     public Color startColor;
     public Color endColor;
+    public Dictionary<Vector3, GameObject> dictionaryOfObstacles;
 
     private void Awake()
     {
         parent = transform;
+        dictionaryOfObstacles = new Dictionary<Vector3, GameObject>();
     }
 
     public void VisualizeMap(MapGrid grid, MapData data, bool visualizeUsingPrefabs)
@@ -33,7 +36,7 @@ public class MapVisualizer : MonoBehaviour
         {
             if (data.obsticles[i])
             {
-                Vector3 positionOnGrid = grid.CalculateCordinatesFromIndex(i);
+                Vector3 positionOnGrid = grid.CalculateCoordinatesFromIndex(i);
                 if(positionOnGrid == data.startPosition || positionOnGrid == data.endPosition)
                     continue;
                 
@@ -42,6 +45,9 @@ public class MapVisualizer : MonoBehaviour
 
                 if (PlaceKnightObsticle(data, positionOnGrid))
                     continue;
+
+                if(dictionaryOfObstacles.ContainsKey(positionOnGrid) == false)
+                    CreateIndicator(positionOnGrid, Color.white, PrimitiveType.Cube);
             }
         }
     }
@@ -69,10 +75,17 @@ public class MapVisualizer : MonoBehaviour
     private void CreateIndicator(Vector3 position, Color color, PrimitiveType sphere)
     {
         GameObject element = GameObject.CreatePrimitive(sphere);
+        dictionaryOfObstacles.Add(position, element);
         element.transform.position = position + new Vector3(0.5f, 0.5f, 0.5f);
         element.transform.parent = this.parent;
         Renderer renderer = element.GetComponent<Renderer>();
         renderer.material.SetColor("_Color", color);
+    }
+
+    public void ClearMap() {
+        foreach(GameObject obstacle in dictionaryOfObstacles.Values)
+            Destroy(obstacle);
+        dictionaryOfObstacles.Clear();
     }
 
     private void VisualizeUsingPrefabs()

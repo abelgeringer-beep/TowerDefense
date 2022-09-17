@@ -9,7 +9,7 @@ public class CandidateMap
     public Vector3 endPoint;
 
     private int numberOfPieces = 0;
-    private bool[] obsticles = null;
+    private bool[] obstacles = null;
     private List<KnightPiece> knightPiecesList;
 
     public CandidateMap(MapGrid grid, int numberOfPieces)
@@ -23,35 +23,35 @@ public class CandidateMap
     {
         startPoint = startPosition;
         endPoint = endPosition;
-        obsticles = new bool[grid.width * grid.length];
+        obstacles = new bool[grid.width * grid.length];
         RandomlyPlaceKnights(numberOfPieces);
+        PlaceObstacles();
     }
 
     private bool PositionCanBeObsitcle(Vector3 position)
     {
-        if(position != startPoint && position != endPoint)
+        if (position == startPoint || position == endPoint)
             return false;
-
+        
         int index = grid.CalculateIndexFromCordinates(position.x, position.z);
-
-        return !obsticles[index];
+        return obstacles[index] == false;
     }
-
+     
     private void RandomlyPlaceKnights(int numOfPieces)
     {
         int count = numberOfPieces;
         int knightPlacementTryLimit = 100;
         while(count > 0 && knightPlacementTryLimit > 0)
         {
-            int randomIndex = Random.Range(0, obsticles.Length);
+            int randomIndex = Random.Range(0, obstacles.Length);
 
-            if (!obsticles[randomIndex])
+            if (!obstacles[randomIndex])
             {
-                Vector3 coordinates = grid.CalculateCordinatesFromIndex(randomIndex);
+                Vector3 coordinates = grid.CalculateCoordinatesFromIndex(randomIndex);
                 if(coordinates == startPoint || coordinates == endPoint)
                     continue;
 
-                obsticles[randomIndex] = true;
+                obstacles[randomIndex] = true;
                 knightPiecesList.Add(new KnightPiece(coordinates));
                 --count;
             }
@@ -60,11 +60,31 @@ public class CandidateMap
         }
     }
 
+    public void PlaceObstaclesForKnight(KnightPiece knight)
+    {
+        for(int i = 0; i < KnightPiece.possibleMoves.Count; ++i)
+        {
+            Vector3 newPosition = knight.position + KnightPiece.possibleMoves[i];
+            if(grid.IsCellValid(newPosition.x, newPosition.z) && PositionCanBeObsitcle(newPosition))
+            {
+                obstacles[grid.CalculateIndexFromCordinates(newPosition.x, newPosition.z)] = true;
+            }
+        }
+    }
+
+    private void PlaceObstacles()
+    {
+        for(int i = 0; i < knightPiecesList.Count; ++i)
+        {
+            PlaceObstaclesForKnight(knightPiecesList[i]);
+        }
+    }
+
     public MapData ReturnMapData()
     {
         return new MapData
         {
-            obsticles = obsticles,
+            obsticles = obstacles,
             knightPieces = knightPiecesList,
             startPosition = startPoint,
             endPosition = endPoint
