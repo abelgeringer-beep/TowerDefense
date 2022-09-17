@@ -331,7 +331,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1213507491}
   m_HandleRect: {fileID: 1213507490}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -937,6 +937,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 807148684}
     m_Modifications:
+    - target: {fileID: -2297646556984093038, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1527446797769978693, guid: 7775bd6c599b2eb4a835d81869b54b70,
         type: 3}
       propertyPath: m_Name
@@ -1391,6 +1396,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 807148684}
     m_Modifications:
+    - target: {fileID: -2297646556984093038, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1527446797769978693, guid: 7775bd6c599b2eb4a835d81869b54b70,
         type: 3}
       propertyPath: m_Name
@@ -1660,12 +1670,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a661ac3d7cb844fac1d01d68684328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
-  movementSpeed: 0
-  movementTime: 0
-  rotationAmount: 0
-  zoomAmount: {x: 0, y: 0, z: 0}
-  boarderThickness: 0
+  transform: {fileID: 0}
+  panSpeed: 30
+  panBorderThickness: 10
+  scrollSpeed: 5
   minY: 0
   maxY: 50
 --- !u!114 &1148480574 stripped
@@ -1846,6 +1854,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 807148684}
     m_Modifications:
+    - target: {fileID: -2297646556984093038, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1527446797769978693, guid: 7775bd6c599b2eb4a835d81869b54b70,
         type: 3}
       propertyPath: m_Name
@@ -2660,6 +2673,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4629791193402868473, guid: 32e3ad4838057ca4c8a6116d33836fb9,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5422858032610576409, guid: 32e3ad4838057ca4c8a6116d33836fb9,
         type: 3}
       propertyPath: m_Enabled
@@ -3135,6 +3153,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 807148684}
     m_Modifications:
+    - target: {fileID: -2297646556984093038, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1527446797769978693, guid: 7775bd6c599b2eb4a835d81869b54b70,
         type: 3}
       propertyPath: m_Name
@@ -3398,6 +3421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 807148684}
     m_Modifications:
+    - target: {fileID: -2297646556984093038, guid: 7775bd6c599b2eb4a835d81869b54b70,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1527446797769978693, guid: 7775bd6c599b2eb4a835d81869b54b70,
         type: 3}
       propertyPath: m_Name
