@@ -22,6 +22,10 @@ public class MapGeneratorInspector : Editor
             {
                 map.GenerateNewMap();
             }
+            if (GUILayout.Button("Repair the map"))
+            {
+                map.TryRepair();
+            }
         }
     }
 }
