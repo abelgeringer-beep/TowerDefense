@@ -82,4 +82,9 @@ public class MapGrid
             Debug.Log(stringBuilder.ToString());
         }
     }
+
+    internal int CalculateIndexFromCoordinates(float x, float z)
+    {
+        return CalculateIndexFromCoordinates((int) x, (int) z);
+    }
 }
