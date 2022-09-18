@@ -26,7 +26,7 @@ public class AStar
             opennedList.Sort();
             currentVertex = opennedList[0];
 
-            if(currentVertex != exitVertex)
+            if(currentVertex.Equals(exitVertex))
             {
                 while (currentVertex != startVertex)
                 {
@@ -73,10 +73,12 @@ public class AStar
                 0,
                 currentVertex.Z + VertexPosition.possibleNeighbours[i].y);
 
-            if(grid.IsCellValid(position.x, position.z))
-            {
-                int index = grid.CalculateIndexFromCoordinates(position.x, position.z);
-            }
+            if (!grid.IsCellValid(position.x, position.z))
+                continue;
+
+            int index = grid.CalculateIndexFromCoordinates(position.x, position.z);
+            neighbours[arrayIndex] = new VertexPosition(position, obsticles[index]);
+            ++arrayIndex;
         }
 
         return neighbours;

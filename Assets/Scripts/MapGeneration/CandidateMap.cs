@@ -11,6 +11,7 @@ public class CandidateMap
     private int numberOfPieces = 0;
     private bool[] obstacles = null;
     private List<KnightPiece> knightPiecesList;
+    private List<Vector3> path;
 
     public CandidateMap(MapGrid grid, int numberOfPieces)
     {
@@ -26,6 +27,15 @@ public class CandidateMap
         obstacles = new bool[grid.width * grid.length];
         RandomlyPlaceKnights(numberOfPieces);
         PlaceObstacles();
+        FindPath();
+    }
+
+    private void FindPath()
+    {
+        path = AStar.GetPath(startPoint, endPoint, obstacles, grid);
+        Debug.Log("path");
+        foreach (var position in path)
+            Debug.Log(position);
     }
 
     private bool PositionCanBeObsitcle(Vector3 position)
