@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,7 @@ public class CandidateMap
     private int numberOfPieces = 0;
     private bool[] obstacles = null;
     private List<KnightPiece> knightPiecesList;
+    private List<Vector3> path;
 
     public CandidateMap(MapGrid grid, int numberOfPieces)
     {
@@ -26,6 +28,18 @@ public class CandidateMap
         obstacles = new bool[grid.width * grid.length];
         RandomlyPlaceKnights(numberOfPieces);
         PlaceObstacles();
+        FindPath();
+
+        if(autoRepair)
+            Repair();
+    }
+
+    private void FindPath()
+    {
+        path = AStar.GetPath(startPoint, endPoint, obstacles, grid);
+        Debug.Log("path");
+        foreach (var position in path)
+            Debug.Log(position);
     }
 
     private bool PositionCanBeObsitcle(Vector3 position)
@@ -89,5 +103,45 @@ public class CandidateMap
             startPosition = startPoint,
             endPosition = endPoint
         };
+    }
+
+    public List<Vector3> Repair()
+    {
+        int numberOfObstacles = obstacles.Where(_ => _).Count();
+        List<Vector3> obstaclesToRemove = new List<Vector3>();
+
+        if(path.Count > 0)
+            return obstaclesToRemove;
+
+        do
+        {
+            int obstacleIndexToRemove = Random.Range(0, numberOfObstacles);
+
+            for (int i = 0; i < obstacles.Length; ++i)
+            {
+                if (obstacles[i]) {
+                    if (obstacleIndexToRemove == 0)
+                    {
+                        obstacles[i] = false;
+                        obstaclesToRemove.Add(grid.CalculateCoordinatesFromIndex(i));
+                        break;
+                    }
+                    --obstacleIndexToRemove;
+                }   
+            }
+
+            FindPath();
+        } while (this.path.Count <= 0);
+
+        for(int i = 0; i < obstaclesToRemove.Count; ++i)
+        {
+            if (path.Contains(obstaclesToRemove[i]))
+                continue;
+
+            int index = grid.CalculateIndexFromCoordinates(obstaclesToRemove[i].x, obstaclesToRemove[i].z);
+            obstacles[index] = true;
+        }
+
+        return obstaclesToRemove;
     }
 }

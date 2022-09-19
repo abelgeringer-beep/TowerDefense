@@ -7,6 +7,7 @@ public class MapGenerator : MonoBehaviour
     private MapGrid grid;
     private Vector3 startPosition;
     private Vector3 endPosition;
+    private CandidateMap candidateMap;
 
     public GridVisualizer gridVisualizer;
     public Direction startEdge;
@@ -35,8 +36,23 @@ public class MapGenerator : MonoBehaviour
 
         MapHelper.RandomlyChoseAndSetStartAndExitPoints(grid, ref startPosition, ref endPosition, randomPlacement, startEdge, exitEdge);
 
-        CandidateMap candidateMap = new CandidateMap(grid, numberOfPieces);
+        candidateMap = new CandidateMap(grid, numberOfPieces);
         candidateMap.CreateMap(startPosition, endPosition, false);
         mapVisualizer.VisualizeMap(grid, candidateMap.ReturnMapData(), false);
+    }
+
+    public void TryRepair()
+    {
+        if (candidateMap == null)
+            return;
+
+        List<Vector3> listOfObstaclesToRemove = candidateMap.Repair();
+
+        if (listOfObstaclesToRemove.Count > 0)
+        {
+            mapVisualizer.ClearMap();
+            mapVisualizer.VisualizeMap(grid, candidateMap.ReturnMapData(), false);
+        }
+
     }
 }
