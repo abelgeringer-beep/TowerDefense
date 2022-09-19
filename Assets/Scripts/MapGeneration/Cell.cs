@@ -19,7 +19,7 @@ public enum CellObjectType
 {
     Empty,
     Road,
-    Obsticle,
+    Obstacle,
     Start,
     Exit
 }

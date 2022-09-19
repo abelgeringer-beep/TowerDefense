@@ -37,9 +37,6 @@ public class CandidateMap
     private void FindPath()
     {
         path = AStar.GetPath(startPoint, endPoint, obstacles, grid);
-        Debug.Log("path");
-        foreach (var position in path)
-            Debug.Log(position);
     }
 
     private bool PositionCanBeObsitcle(Vector3 position)
@@ -50,7 +47,7 @@ public class CandidateMap
         int index = grid.CalculateIndexFromCordinates(position.x, position.z);
         return obstacles[index] == false;
     }
-     
+    
     private void RandomlyPlaceKnights(int numOfPieces)
     {
         int count = numberOfPieces;
@@ -101,7 +98,8 @@ public class CandidateMap
             obsticles = obstacles,
             knightPieces = knightPiecesList,
             startPosition = startPoint,
-            endPosition = endPoint
+            endPosition = endPoint,
+            path = path
         };
     }
 
@@ -127,7 +125,7 @@ public class CandidateMap
                         break;
                     }
                     --obstacleIndexToRemove;
-                }   
+                } 
             }
 
             FindPath();

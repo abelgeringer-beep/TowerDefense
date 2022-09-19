@@ -7,4 +7,5 @@ public struct MapData
     public List<KnightPiece> knightPieces;
     public Vector3 startPosition;
     public Vector3 endPosition;
+    public List<Vector3> path;
 }

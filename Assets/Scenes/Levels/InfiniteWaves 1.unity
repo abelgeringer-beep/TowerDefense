@@ -1319,6 +1319,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startColor: {r: 0, g: 1, b: 0.015245676, a: 0}
   endColor: {r: 1, g: 0.8307333, b: 0, a: 0}
+  roadStraight: {fileID: 1487688346712832, guid: 41b018f12ce178147b4607881dbcdcea,
+    type: 3}
+  roadTileCorner: {fileID: 1487688346712832, guid: 41b018f12ce178147b4607881dbcdcea,
+    type: 3}
+  tileEmpty: {fileID: 1219471545100730, guid: 1b8fbee291cdc1046a281cb2b3b51bf7, type: 3}
+  startTile: {fileID: 1620071135427400, guid: 19c412f8f5af8fa4dbe5adbf58d317e6, type: 3}
+  exitTile: {fileID: 1620071135427400, guid: d25d47f4987bcd443994f655783ec7be, type: 3}
+  environmentTiles:
+  - {fileID: 1640771308685042, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
 --- !u!4 &1331447485
 Transform:
   m_ObjectHideFlags: 0
@@ -1638,10 +1647,12 @@ MonoBehaviour:
   startEdge: 1
   exitEdge: 2
   randomPlacement: 0
+  VisualizeUsingPrefabs: 1
+  autoRepair: 0
   mapVisualizer: {fileID: 1331447484}
-  numberOfPieces: 10
-  width: 30
-  length: 30
+  numberOfPieces: 5
+  width: 10
+  length: 10
 --- !u!4 &1507560699
 Transform:
   m_ObjectHideFlags: 0
