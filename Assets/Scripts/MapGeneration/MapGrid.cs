@@ -33,8 +33,8 @@ public class MapGrid
 
     public void SetCell(int x, int z, CellObjectType cellObjectType, bool isTaken = false)
     {
-        cellGrid[x, z].objectType = cellObjectType;
-        cellGrid[x, z].isTaken = isTaken;
+        cellGrid[z, x].objectType = cellObjectType;
+        cellGrid[z, x].isTaken = isTaken;
     }
 
     public void SetCell(float x, float z, CellObjectType cellObjectType, bool isTaken = false)
@@ -53,6 +53,11 @@ public class MapGrid
         int z = randomIndex / length;
 
         return new Vector3(x, 0, z);
+    }
+
+    internal Cell GetCell(int x, int z)
+    {
+        return cellGrid[z, x];
     }
 
     public bool IsCellValid(float x, float z)
