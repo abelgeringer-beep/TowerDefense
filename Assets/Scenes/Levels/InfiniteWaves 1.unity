@@ -1071,6 +1071,66 @@ RectTransform:
   m_AnchoredPosition: {x: -57.34, y: -0}
   m_SizeDelta: {x: 496.75006, y: 146.51703}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &940088392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 940088394}
+  - component: {fileID: 940088393}
+  m_Layer: 0
+  m_Name: Brain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &940088393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940088392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226ffaea5e1b0e044a55b697aa53aa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  populationSize: 40
+  crossoverRate: 100
+  mutationRate: 0
+  generationLimit: 20
+  fitnessCornerMin: 4
+  fitnessCornerMax: 10
+  fitnessCornerWeight: 2
+  fitnessPathWeight: 4
+  fitnessObstacleCornerWeight: 1
+  mapWidth: 30
+  mapLength: 30
+  startPositionEdge: 1
+  exitPositionEdge: 2
+  randomStartAndEnd: 1
+  NumberOfKnightPieces: 50
+  mapVisualizer: {fileID: 1331447484}
+--- !u!4 &940088394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940088392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.802394, y: 6.528927, z: 6.783862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980599210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,7 +1691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1507560698
 MonoBehaviour:
   m_ObjectHideFlags: 0

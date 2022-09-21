@@ -34,10 +34,12 @@ public class MapBrain : MonoBehaviour
     private int fitnessCornerMax = 9;
     [SerializeField, Range(1, 3)]
     private int fitnessCornerWeight = 1;
+    [SerializeField, Range(1, 3)]
+    private int fitnessNearCornerWeight = 1;
     [SerializeField, Range(1, 5)]
     private int fitnessPathWeight = 1;
     [SerializeField, Range(0.3f, 1f)]
-    private int fitnessObstacleCornerWeight = 1;
+    private float fitnessObstacleCornerWeight = 1;
 
     [Header("Map start parameters")]
     [SerializeField, Range(3, 30)]
@@ -74,6 +76,7 @@ public class MapBrain : MonoBehaviour
 
     public void RunAlgorythm()
     {
+        UIController.Instance.ResetScreen();
         ResetAlgorythmVariables();
         mapVisualizer.ClearMap();
 
@@ -139,7 +142,7 @@ public class MapBrain : MonoBehaviour
         }
 
         ++generationNumber;
-
+        UIController.Instance.SetLoadingValue(generationNumber / (float)generationLimit);
         yield return new WaitForEndOfFrame();
 
         Debug.Log("best generation number: " + generationNumber + " best fitness score current generation: " + bestMapThisGeneration);
@@ -179,6 +182,8 @@ public class MapBrain : MonoBehaviour
 
         MapData data = bestMap.ReturnMapData();
         mapVisualizer.VisualizeMap(grid, data, true);
+
+        UIController.Instance.HideLoadingScreen();
 
         Debug.Log("path length: " + data.path);
         Debug.Log("corners count: " + data.corners.Count);
@@ -233,6 +238,8 @@ public class MapBrain : MonoBehaviour
             score -= fitnessCornerWeight * (cornersCount - fitnessCornerMax);
         else if (cornersCount > fitnessCornerMin)
             score -= fitnessCornerWeight * fitnessCornerMin;
+
+        score -= mapData.cornersNearEachOther * fitnessNearCornerWeight;
 
         return score;
     }
