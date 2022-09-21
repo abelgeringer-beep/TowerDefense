@@ -38,7 +38,11 @@ public class MainMenu : MonoBehaviour
 
     public void InfiniteWaves()
     {
+    }
+
+    public void GeneratedMap()
+    {
         PhotonNetwork.OfflineMode = true;
-        sceneFader.FadeTo("InfiniteWaves");
+        sceneFader.FadeTo("GeneratedMap");
     }
 }

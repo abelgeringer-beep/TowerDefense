@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/InfiniteWaves.unity
     guid: 7067074aa7a44b546a1850932680975a
+  - enabled: 1
+    path: Assets/Scenes/Levels/GeneratedMap.unity
+    guid: 2e82faa42a244a9408fa6c499ec0115f
   m_configObjects: {}
