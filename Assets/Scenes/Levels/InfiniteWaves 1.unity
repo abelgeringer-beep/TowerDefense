@@ -1328,6 +1328,7 @@ MonoBehaviour:
   exitTile: {fileID: 1620071135427400, guid: d25d47f4987bcd443994f655783ec7be, type: 3}
   environmentTiles:
   - {fileID: 1640771308685042, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
+  animate: 1
 --- !u!4 &1331447485
 Transform:
   m_ObjectHideFlags: 0
@@ -1648,11 +1649,11 @@ MonoBehaviour:
   exitEdge: 2
   randomPlacement: 0
   VisualizeUsingPrefabs: 1
-  autoRepair: 0
+  autoRepair: 1
   mapVisualizer: {fileID: 1331447484}
-  numberOfPieces: 5
-  width: 10
-  length: 10
+  numberOfPieces: 35
+  width: 17
+  length: 17
 --- !u!4 &1507560699
 Transform:
   m_ObjectHideFlags: 0
@@ -1688,12 +1689,12 @@ PrefabInstance:
     - target: {fileID: 7359485108439556676, guid: 5a41716142601124aa307263e52cc75f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7359485108439556676, guid: 5a41716142601124aa307263e52cc75f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7359485108439556676, guid: 5a41716142601124aa307263e52cc75f,
         type: 3}

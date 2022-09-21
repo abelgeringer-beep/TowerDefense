@@ -14,6 +14,7 @@ public class MapVisualizer : MonoBehaviour
 
     public GameObject roadStraight, roadTileCorner, tileEmpty, startTile, exitTile;
     public GameObject[] environmentTiles;
+    public bool animate;
 
     private void Awake()
     {
@@ -56,6 +57,8 @@ public class MapVisualizer : MonoBehaviour
                     cell.objectType = CellObjectType.Obstacle;
                 }
 
+                Direction previousDirection = Direction.None;
+                Direction nextDirection = Direction.None;
                 switch(cell.objectType)
                 {
                     case CellObjectType.Empty:
@@ -71,6 +74,10 @@ public class MapVisualizer : MonoBehaviour
                         CreateIndicator(position, startTile);
                         break;
                     case CellObjectType.Obstacle:
+                        if(data.path.Count > 0)
+                        {
+                            nextDirection = GetDirectionFromVectors(data.path[0], position);
+                        }
                         CreateIndicator(position, environmentTiles[Random.Range(0, environmentTiles.Length)]);
                         break;
                     default:
@@ -80,6 +87,23 @@ public class MapVisualizer : MonoBehaviour
         }
     }
 
+    private Direction GetDirectionFromVectors(Vector3 positionToGoTo, Vector3 position)
+    {
+        if(positionToGoTo.x > position.x)
+        {
+            return Direction.Right;
+        } 
+        else if (positionToGoTo.x < position.x) 
+        { 
+            return Direction.Left;
+        }
+        else if (positionToGoTo.z < position.z) 
+        {
+            return Direction.Down;
+        }
+        return Direction.Up;
+    }
+
     private void CreateIndicator(Vector3 position, GameObject prefab, Quaternion rotation = new Quaternion())
     {
         Vector3 placementPosition = position + new Vector3(0.5f, 0.5f, 0.5f);
@@ -87,6 +111,12 @@ public class MapVisualizer : MonoBehaviour
         GameObject element = Instantiate(prefab, placementPosition, rotation);
         element.transform.parent = parent;
         dictionaryOfObstacles.Add(position, element);
+
+        if (animate)
+        {
+            element.AddComponent<DropTween>();
+            DropTween.IncreaseDropTime();
+        }
     }
 
     private void VisualizeUsingPremitives(MapGrid grid, MapData data)
@@ -142,11 +172,21 @@ public class MapVisualizer : MonoBehaviour
         element.transform.parent = this.parent;
         Renderer renderer = element.GetComponent<Renderer>();
         renderer.material.SetColor("_Color", color);
+
+        if(animate)
+        {
+            element.AddComponent<DropTween>();
+            DropTween.IncreaseDropTime();
+        }
     }
 
     public void ClearMap() {
         foreach(GameObject obstacle in dictionaryOfObstacles.Values)
             Destroy(obstacle);
         dictionaryOfObstacles.Clear();
+
+        if(animate)
+            DropTween.ResetTime();
+        
     }
 }
