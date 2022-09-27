@@ -1,3 +1,4 @@
+using Enemy;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,13 @@ public class MapVisualizer : MonoBehaviour
 {
     private Transform parent;
     private object data;
+    private List<GameObject> sortedWayPoints = new List<GameObject>();
 
     public Color startColor;
     public Color endColor;
     public Dictionary<Vector3, GameObject> dictionaryOfObstacles;
 
-    public GameObject roadStraight, roadTileCorner, tileEmpty, startTile, exitTile;
+    public GameObject roadStraight, roadTileCorner, tileEmpty, startTile, exitTile, wayPoint;
     public GameObject[] environmentTiles;
     public bool animate;
 
@@ -35,7 +37,7 @@ public class MapVisualizer : MonoBehaviour
 
     private void VisualizeUsingPrefabs(MapGrid grid, MapData data)
     {
-        for(int i = 0; i < data.path.Count; ++i)
+        for (int i = 0; i < data.path.Count; ++i)
         {
             Vector3 position = data.path[i];
             if (position == data.endPosition)
@@ -57,34 +59,76 @@ public class MapVisualizer : MonoBehaviour
                     cell.objectType = CellObjectType.Obstacle;
                 }
 
-                Direction previousDirection = Direction.None;
+                // Direction previousDirection = Direction.None;
                 Direction nextDirection = Direction.None;
                 switch(cell.objectType)
                 {
                     case CellObjectType.Empty:
-                        CreateIndicator(position, tileEmpty);
+                        CreateIndicator(position, tileEmpty, new Quaternion(), GetOffset(row, col));
                         break;
                     case CellObjectType.Road:
-                        CreateIndicator(position, roadStraight);
+                        Instantiate(wayPoint, position + GetOffset(row, col) + new Vector3(0, 0.5f, 0), new Quaternion());
+                        CreateIndicator(position, roadStraight, new Quaternion(), GetOffset(row, col));
                         break;
                     case CellObjectType.Exit:
-                        CreateIndicator(position, exitTile);
+                        Instantiate(wayPoint, position + GetOffset(row, col) + new Vector3(0, 0.5f, 0), new Quaternion());
+                        CreateIndicator(position, exitTile, new Quaternion(), GetOffset(row, col));
                         break;
                     case CellObjectType.Start:
-                        CreateIndicator(position, startTile);
+                        CreateIndicator(position, startTile, new Quaternion(), GetOffset(row, col));
+                        Instantiate(wayPoint, position + GetOffset(row, col) + new Vector3(0, 0.5f, 0), new Quaternion());
+                        startTile.transform.position = position + GetOffset(row, col) + new Vector3(0, 0.5f, 0);
+                        sortedWayPoints.Add(startTile);
                         break;
                     case CellObjectType.Obstacle:
                         if(data.path.Count > 0)
                         {
                             nextDirection = GetDirectionFromVectors(data.path[0], position);
                         }
-                        CreateIndicator(position, environmentTiles[Random.Range(0, environmentTiles.Length)]);
+                        GameObject environmentTile = environmentTiles[Random.Range(0, environmentTiles.Length)];
+                        CreateIndicator(position, environmentTile, new Quaternion(), GetOffset(row, col));
                         break;
                     default:
                         break;
                 }
             }
         }
+        GameObject[] wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
+        GameObject[] sorted = new GameObject[wayPoints.Length + 1];
+        sorted[0] = startTile;
+
+        for(int i = 1; i < sorted.Length; ++i)
+        {
+            sorted[i] = FindClosest(sorted[i - 1], wayPoints);
+            sortedWayPoints.Add(sorted[i]);
+        }
+    }
+
+    private GameObject FindClosest(GameObject closestTo, GameObject[] NearGameobjects)
+    {
+        float oldDistance = 9999999f;
+        GameObject closestObject = new GameObject();
+        foreach (GameObject g in NearGameobjects)
+        {
+            float dist = Vector3.Distance(closestTo.transform.position, g.transform.position);
+            if (dist < oldDistance && !sortedWayPoints.Contains(g))
+            {
+                closestObject = g;
+                oldDistance = dist;
+            }
+        }
+
+        return closestObject;
+    }
+
+    private Vector3 GetOffset(int row, int col)
+    {
+        Vector3 offsetPosition = new Vector3(0f, 0f, 0f);
+     
+        offsetPosition.x = col * 3f;
+        offsetPosition.z = row * 3f;
+        
+        return offsetPosition;
     }
 
     private Direction GetDirectionFromVectors(Vector3 positionToGoTo, Vector3 position)
@@ -104,9 +148,9 @@ public class MapVisualizer : MonoBehaviour
         return Direction.Up;
     }
 
-    private void CreateIndicator(Vector3 position, GameObject prefab, Quaternion rotation = new Quaternion())
+    private void CreateIndicator(Vector3 position, GameObject prefab, Quaternion rotation = new Quaternion(), Vector3 offset = new Vector3())
     {
-        Vector3 placementPosition = position + new Vector3(0.5f, 0.5f, 0.5f);
+        Vector3 placementPosition = position + offset;
         
         GameObject element = Instantiate(prefab, placementPosition, rotation);
         element.transform.parent = parent;

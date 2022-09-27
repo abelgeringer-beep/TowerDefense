@@ -145,8 +145,6 @@ public class MapBrain : MonoBehaviour
         UIController.Instance.SetLoadingValue(generationNumber / (float)generationLimit);
         yield return new WaitForEndOfFrame();
 
-        Debug.Log("best generation number: " + generationNumber + " best fitness score current generation: " + bestMapThisGeneration);
-
         if(generationNumber < generationLimit)
         {
             List<CandidateMap> nextGeneration = new List<CandidateMap>();
@@ -178,20 +176,15 @@ public class MapBrain : MonoBehaviour
     private void ShowResults()
     {
         isAlgorythmRunning = false;
-        Debug.Log("best solution: " + bestMapGenerationNumber + " with score: " + bestFitnessScoreAllTime);
 
         MapData data = bestMap.ReturnMapData();
         mapVisualizer.VisualizeMap(grid, data, true);
 
         UIController.Instance.HideLoadingScreen();
-
-        Debug.Log("path length: " + data.path);
-        Debug.Log("corners count: " + data.corners.Count);
         
         endDate = DateTime.Now;
         long elapsedTime = endDate.Ticks - startDate.Ticks;
         TimeSpan elapsedSpan = new TimeSpan(elapsedTime);
-        Debug.Log("Time to run: " + elapsedSpan.TotalSeconds);
     }
 
     private void CrossOverParents(CandidateMap parent1, CandidateMap parent2, out CandidateMap child1, out CandidateMap child2)
