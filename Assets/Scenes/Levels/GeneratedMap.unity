@@ -1797,6 +1797,8 @@ MonoBehaviour:
   tileEmpty: {fileID: 1219471545100730, guid: 1b8fbee291cdc1046a281cb2b3b51bf7, type: 3}
   startTile: {fileID: 1620071135427400, guid: 19c412f8f5af8fa4dbe5adbf58d317e6, type: 3}
   exitTile: {fileID: 1620071135427400, guid: d25d47f4987bcd443994f655783ec7be, type: 3}
+  wayPoint: {fileID: 8444699557834508908, guid: 69b8b0da18d3e684183ee90ae80846cd,
+    type: 3}
   environmentTiles:
   - {fileID: 1640771308685042, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
   animate: 1
@@ -3254,7 +3256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2038012360
 MonoBehaviour:
   m_ObjectHideFlags: 0
