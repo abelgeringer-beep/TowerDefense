@@ -20,6 +20,12 @@ namespace Enemy
 
         private void Update()
         {
+            if(_target == null)
+            {
+                Debug.Log("no target");
+                Debug.Log(WayPoints.Points[0]);
+                return;
+            }
             var direction = _target.position - transform.position;
             transform.Translate(direction.normalized * (_enemy.speed * Time.deltaTime),  Space.World);
 

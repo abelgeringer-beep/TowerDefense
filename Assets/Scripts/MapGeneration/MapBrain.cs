@@ -68,10 +68,14 @@ public class MapBrain : MonoBehaviour
 
     private void Start()
     {
+        MapHelper.MAP_GENERATION_FINISHED = false;
         mutationRatePercent = mutationRate / 100f;
         crossoverRatePercent = crossoverRate / 100f;
 
         RunAlgorythm();
+
+
+        MapHelper.MAP_GENERATION_FINISHED = true;
     }
 
     public void RunAlgorythm()
