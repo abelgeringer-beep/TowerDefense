@@ -7,6 +7,10 @@ public class MainMenu : MonoBehaviour
     public string levelToLoad = "MainLevel";
 
     public SceneFader sceneFader;
+    private void Awake()
+    {
+        PhotonNetwork.OfflineMode = true;
+    }
 
     public void Play()
     {
@@ -21,12 +25,15 @@ public class MainMenu : MonoBehaviour
 
     public void Menu()
     {
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.OfflineMode = true;
         Time.timeScale = 1f;
         sceneFader.FadeTo("mainMenu");
     }
 
     public void Settings()
     {
+        PhotonNetwork.OfflineMode = true;
         sceneFader.FadeTo("Settings");
     }
 

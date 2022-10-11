@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public static class MapHelper
 {
+    public static bool MAP_GENERATION_FINISHED = false;
     public static void RandomlyChoseAndSetStartAndExitPoints(MapGrid grid, ref Vector3 startPosition, ref Vector3 exitPosition,
             bool randomPlacement, Direction startPositionEdge = Direction.Left, Direction exitPositionEdge = Direction.Right)
     {

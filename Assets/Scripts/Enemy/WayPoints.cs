@@ -8,6 +8,12 @@ namespace Enemy
 
         public void Awake()
         {
+            if(Points == null)
+                SetPoints();
+        }
+
+        public void SetPoints()
+        {
             Points = new Transform[transform.childCount];
             for (int i = 0; i < Points.Length; i++)
             {
