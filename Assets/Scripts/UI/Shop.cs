@@ -17,7 +17,7 @@ namespace UI
         }
 
         public void SelectStandardTurret()
-        {
+        { 
             _buildManager.SelectTurretToBuild(standardTurret);
         }
 
