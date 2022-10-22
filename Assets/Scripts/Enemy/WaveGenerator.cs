@@ -70,7 +70,7 @@ public class WaveGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (GetEnemiesAlive() > 0 && _countdown >= 0f) 
+        if (GetEnemiesAlive() > 0 && _countdown >= 0f || spawnPoint == null) 
             return;
 
         waveCounterText.text = (++_currentWaveCount).ToString();

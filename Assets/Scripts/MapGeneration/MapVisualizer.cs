@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 public class MapVisualizer : MonoBehaviour
 {
     private Transform parent;
-    private object data;
-    private List<GameObject> sortedWayPoints = new List<GameObject>();
 
     public Color startColor;
     public Color endColor;
@@ -80,7 +78,6 @@ public class MapVisualizer : MonoBehaviour
                         CreateIndicator(position, startTile, new Quaternion(), GetOffset(row, col));
                         CreateWayPoint(position + GetOffset(row, col) + new Vector3(0, 0.5f, 0));
                         startTile.transform.position = position + GetOffset(row, col) + new Vector3(0, 0.5f, 0);
-                        sortedWayPoints.Add(startTile);
                         break;
                     case CellObjectType.Obstacle:
                         if(data.path.Count > 0)
@@ -95,52 +92,18 @@ public class MapVisualizer : MonoBehaviour
                 }
             }
         }
-        GameObject[] wayPoints = new GameObject[wayPointsParent.transform.childCount];
 
-        for(int i = 0; i < wayPointsParent.transform.childCount; ++i)
-            wayPoints[i] = wayPointsParent.transform.GetChild(i).gameObject;
-
-        GameObject[] sorted = new GameObject[wayPoints.Length];
-        sorted[0] = startTile;
-
-        for (int i = 1; i < wayPoints.Length; ++i)
-        {
-            sorted[i] = FindClosest(sorted[i - 1], wayPoints);
-            sortedWayPoints.Add(sorted[i]);
-        }
-        Transform[] wayPointsTransform = new Transform[sortedWayPoints.Count];
-        Debug.Log(wayPoints.Length);
-        for (int i = 1; i < sorted.Length; ++i)
-        {
-            wayPointsTransform[i] = sorted[i].transform;
-            Debug.Log(wayPointsTransform[i]);
-        }
-        WayPoints.Points = wayPointsTransform;
+        gameManagerToEnable.GetComponent<WaveGenerator>().spawnPoint = startTile;
+        WayPoints.start = startTile.transform;
+        WayPoints.end = exitTile.transform;
         wayPointToEnable.SetActive(true);
         gameManagerToEnable.SetActive(true);
+        gameManagerToEnable.GetComponent<WaveGenerator>().enabled = true;
     }
 
     private void CreateWayPoint(Vector3 position)
     {
-        Instantiate(wayPoint, position, new Quaternion()).transform.parent = wayPointsParent.transform;
-    }
-
-    private GameObject FindClosest(GameObject closestTo, GameObject[] nearGameobjects)
-    {
-        float oldDistance = 9999999f;
-        float dist;
-        GameObject closestObject = new GameObject();
-        for (int i = 0; i < nearGameobjects.Length; ++i)
-        {
-            dist = Vector3.Distance(closestTo.transform.position, nearGameobjects[i].transform.position);
-            if (dist < oldDistance && !sortedWayPoints.Contains(nearGameobjects[i]))
-            {
-                closestObject = nearGameobjects[i];
-                oldDistance = dist;
-            }
-        }
-
-        return closestObject;
+        Instantiate(wayPoint, position, new Quaternion()).transform.SetParent(wayPointToEnable.transform, false);
     }
 
     private Vector3 GetOffset(int row, int col)
