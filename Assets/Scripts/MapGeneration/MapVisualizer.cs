@@ -14,7 +14,7 @@ public class MapVisualizer : MonoBehaviour
 
     public GameObject roadStraight, roadTileCorner, tileEmpty, startTile, exitTile, wayPoint;
     public GameObject wayPointsParent;
-    public GameObject gameManagerToEnable, wayPointToEnable;
+    public GameObject gameManagerToEnable, wayPointToEnable, overlayCanvasToEnable;
     public GameObject[] environmentTiles;
     public bool animate;
 
@@ -99,6 +99,7 @@ public class MapVisualizer : MonoBehaviour
         wayPointToEnable.SetActive(true);
         gameManagerToEnable.SetActive(true);
         gameManagerToEnable.GetComponent<WaveGenerator>().enabled = true;
+        overlayCanvasToEnable.SetActive(true);
     }
 
     private void CreateWayPoint(Vector3 position)

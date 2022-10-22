@@ -16,7 +16,6 @@ namespace Enemy
                 Debug.Log("no waypoints yet");
                 return;
             }
-            Debug.Log("OnAwake");
             Points = new Transform[transform.childCount];
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -30,8 +29,6 @@ namespace Enemy
         {
             if (sort)
             {
-                Debug.Log("sort");
-                Debug.Log(Points.Length);
                 sorted = new Transform[Points.Length];
                 sorted[0] = start;
                 sorted[sorted.Length-1] = end;
@@ -41,7 +38,6 @@ namespace Enemy
                 }
                 for (int i = 0; i < sorted.Length; ++i)
                 {
-                    Debug.Log(i);
                     Points[i] = sorted[i];
                 }
                 return;
