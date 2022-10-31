@@ -22,3 +22,4 @@
 - Use sounds
 - Make map saveable and loadable
 - Make map generation ready for multiplayer
+- optimize map generation
