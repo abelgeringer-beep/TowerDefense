@@ -11,15 +11,11 @@ public class Settings : MonoBehaviour
     public Toggle vSync;
     public Slider brightnessSlider;
     public Slider fpsSlider;
-
-    private void Awake()
-    {
-        SetSettings();
-    }
-
+    
     private void Start()
     {
         SetResolutionDropDown();
+        SetSettings();
     }
 
     private void SetSettings()
@@ -107,6 +103,8 @@ public class Settings : MonoBehaviour
     {
         resolutionDd.value = idx;
 
+        Debug.Log(Screen.resolutions[idx].width);
+        Debug.Log(Screen.resolutions[idx].height);
         Screen.SetResolution(
             Screen.resolutions[idx].width,
             Screen.resolutions[idx].height,

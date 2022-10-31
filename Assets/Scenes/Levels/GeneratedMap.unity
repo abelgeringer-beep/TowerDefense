@@ -1216,20 +1216,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   populationSize: 30
   crossoverRate: 100
-  mutationRate: 5
-  generationLimit: 20
+  mutationRate: 1
+  generationLimit: 10
   fitnessCornerMin: 5
   fitnessCornerMax: 30
   fitnessCornerWeight: 3
   fitnessNearCornerWeight: 2
   fitnessPathWeight: 5
   fitnessObstacleCornerWeight: 0.5
-  mapWidth: 20
-  mapLength: 20
+  mapWidth: 30
+  mapLength: 30
   startPositionEdge: 1
   exitPositionEdge: 2
   randomStartAndEnd: 1
-  NumberOfKnightPieces: 35
+  NumberOfKnightPieces: 50
   mapVisualizer: {fileID: 1331447484}
 --- !u!4 &940088394
 Transform:
