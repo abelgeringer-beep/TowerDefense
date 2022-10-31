@@ -13,12 +13,12 @@
 - Settings
 - Multiplayer
 
+## Known Bugs
+- For some reason there isn't one now
+
 ## Future development
 - Make more oprions in settings
 - Use models
 - Use sounds
 - Make map saveable and loadable
 - Make map generation ready for multiplayer
-
-## Known Bugs
-- Settings resolution dropdown
