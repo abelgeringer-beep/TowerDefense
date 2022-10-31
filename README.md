@@ -21,5 +21,4 @@
 - Make map generation ready for multiplayer
 
 ## Known Bugs
-- Map generation menu is not working properly (pause, gameover and win)
 - Settings resolution dropdown
