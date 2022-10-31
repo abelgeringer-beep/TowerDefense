@@ -1214,22 +1214,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226ffaea5e1b0e044a55b697aa53aa80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  populationSize: 40
+  populationSize: 30
   crossoverRate: 100
-  mutationRate: 0
+  mutationRate: 5
   generationLimit: 20
   fitnessCornerMin: 5
   fitnessCornerMax: 30
   fitnessCornerWeight: 3
   fitnessNearCornerWeight: 2
   fitnessPathWeight: 5
-  fitnessObstacleCornerWeight: 0.651
-  mapWidth: 30
-  mapLength: 30
+  fitnessObstacleCornerWeight: 0.5
+  mapWidth: 20
+  mapLength: 20
   startPositionEdge: 1
   exitPositionEdge: 2
   randomStartAndEnd: 1
-  NumberOfKnightPieces: 50
+  NumberOfKnightPieces: 35
   mapVisualizer: {fileID: 1331447484}
 --- !u!4 &940088394
 Transform:
@@ -3092,7 +3092,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneFader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1149249896}
     - target: {fileID: 1195178207129518833, guid: 8284f4c870f74354fa10f75941979cbc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3237,7 +3237,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneFader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1149249896}
     - target: {fileID: 1195178207857860871, guid: 8284f4c870f74354fa10f75941979cbc,
         type: 3}
       propertyPath: levelToUnlock
@@ -3262,7 +3262,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneFader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1149249896}
     - target: {fileID: 4501119049243952466, guid: 8284f4c870f74354fa10f75941979cbc,
         type: 3}
       propertyPath: sceneViewId
@@ -3272,12 +3272,12 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneFader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1149249896}
     - target: {fileID: 7762546530402876339, guid: 8284f4c870f74354fa10f75941979cbc,
         type: 3}
       propertyPath: sceneFader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1149249896}
     - target: {fileID: 7762546530402876339, guid: 8284f4c870f74354fa10f75941979cbc,
         type: 3}
       propertyPath: levelToLoad

@@ -1367,6 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1341885147}
   - component: {fileID: 1341885146}
+  - component: {fileID: 1341885148}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1432,6 +1433,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 21.6, y: 44.013, z: 0}
+--- !u!81 &1341885148
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341885145}
+  m_Enabled: 1
 --- !u!1 &1587446354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2257,140 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &2927936802141765792
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 256.07532
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 69.88324
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 221.0523
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925134056824315090, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920740695026484384, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[0].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 07f391589664f4e85904fa28802b4aa8, type: 3}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[1].name
+      value: Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 26364aaf1f64b40c1a047b0bacfbd10e, type: 3}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[2].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[2].name
+      value: Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[1].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119790669760556029, guid: bd6a765310ec57942890e64d3e3da723,
+        type: 3}
+      propertyPath: audios.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd6a765310ec57942890e64d3e3da723, type: 3}
 --- !u!4 &2978047749286072465
 Transform:
   m_ObjectHideFlags: 0
