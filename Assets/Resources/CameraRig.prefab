@@ -131,11 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a661ac3d7cb844fac1d01d68684328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 7359485107560859454}
+  _transform: {fileID: 7359485107560859454}
   panSpeed: 30
   panBorderThickness: 10
   scrollSpeed: 5
-  minY: 20
+  minY: 10
   maxY: 110
 --- !u!114 &7834341631096675121
 MonoBehaviour:

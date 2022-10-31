@@ -1119,8 +1119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a661ac3d7cb844fac1d01d68684328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transform: {fileID: 0}
   panSpeed: 30
-  panBoarderThickness: 10
+  panBorderThickness: 10
   scrollSpeed: 5
   minY: 0
   maxY: 50
@@ -2122,6 +2123,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4629791193402868473, guid: 32e3ad4838057ca4c8a6116d33836fb9,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5422858032610576409, guid: 32e3ad4838057ca4c8a6116d33836fb9,
         type: 3}
       propertyPath: m_Enabled
