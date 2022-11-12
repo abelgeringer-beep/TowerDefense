@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_hu
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: hu
+  m_SharedData: {fileID: 11400000, guid: 8205ac228c20c904aa21d1478fdbfee8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 7681785856
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90221494272
+    m_Localized: "Men\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173038026752
+    m_Localized: "T\xF6bbj\xE1t\xE9kos m\xF3d"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 735993315328
+    m_Localized: "Be\xE1ll\xEDt\xE1sok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3033356222464
+    m_Localized: "Kil\xE9p\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3072161923072
+    m_Localized: "J\xE1t\xE9k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3126830481408
+    m_Localized: "V\xE9gtelen j\xE1t\xE9k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10303842467840
+    m_Localized: Zene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10352332816384
+    m_Localized: Effektek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10388311556096
+    m_Localized: Grafika
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10440576778240
+    m_Localized: Hangok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10482050056192
+    m_Localized: Nyelv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10539193253888
+    m_Localized: "Ment\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10636098453504
+    m_Localized: "Felbont\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10659209068544
+    m_Localized: "Text\xFAr\xE1k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10676187611136
+    m_Localized: Anti-Aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10808446599168
+    m_Localized: "Teljes k\xE9perny\u0151"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76791458742272
+    m_Localized: "T\xFAl\xE9lt Hull\xE1m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67437078691840
+    m_Localized: Magyar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67473023877120
+    m_Localized: Angol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76178427658240
+    m_Localized: "J\xE1t\xE9k v\xE9ge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76340055162880
+    m_Localized: "\xDAjra"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76391523467264
+    m_Localized: "Sz\xFCnet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76430949924864
+    m_Localized: "Folytat\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77677367050240
+    m_Localized: "Sz\xFCneteltetve"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78334383800320
+    m_Localized: "Szint teljes\xEDtve"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79955566182400
+    m_Localized: "Szint Kiv\xE1laszt\xE1sa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80044946800640
+    m_Localized: "Vissza\xEDll\xEDt\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80519251279872
+    m_Localized: "\xDAj"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80581624774656
+    m_Localized: "Csatlakoz\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80725187411968
+    m_Localized: "\xDAj/Csatlakoz\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80959720308736
+    m_Localized: "N\xE9v"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81801378709504
+    m_Localized: "N\xE9v..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82130677710848
+    m_Localized: "T\xD6BBJ\xC1T\xC9KOS M\xD3D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97216205078528
+    m_Localized: "Bet\xF6lt\xE9s..."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
