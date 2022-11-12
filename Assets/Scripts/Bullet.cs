@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Transform _target;
     public float speed = 20f;
     public GameObject impactEffect;
+    public GameObject smokeTrail;
     public int damage = 50;
     public float explosionRadius;
     public bool isRocket;
@@ -78,6 +79,12 @@ public class Bullet : MonoBehaviour
         
         else 
             Damage(_target);
+
+        if(isRocket)
+        {
+            smokeTrail.transform.parent = null;
+            smokeTrail.GetComponent<ParticleSystem>().Stop();
+        }
 
         CoroutineManager.Instance.DestroyGameObject(effectIns, 5f);
         PhotonNetwork.Destroy(gameObject);
