@@ -100,6 +100,7 @@ MonoBehaviour:
   speed: 70
   impactEffect: {fileID: 2017141003182150770, guid: a0c70eeb3f8155d45aa7b93875a9da89,
     type: 3}
+  smokeTrail: {fileID: 0}
   damage: 70
   explosionRadius: 0
   isRocket: 0
