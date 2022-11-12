@@ -158,6 +158,14 @@ MonoBehaviour:
     m_Localized: "Bet\xF6lt\xE9s..."
     m_Metadata:
       m_Items: []
+  - m_Id: 450102646718464
+    m_Localized: Elad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 450114965389312
+    m_Localized: Fejleszt
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
