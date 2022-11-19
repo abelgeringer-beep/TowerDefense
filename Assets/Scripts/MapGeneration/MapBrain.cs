@@ -196,7 +196,7 @@ public class MapBrain : MonoBehaviour
         child1 = parent1.DeepClone();
         child2 = parent2.DeepClone();
 
-        if(Random.value < crossoverRatePercent)
+        if (Random.value < crossoverRatePercent)
         {
             int numBIts = parent1.obstacles.Length;
             int crossoverIndex = Random.Range(0, numBIts);
@@ -231,8 +231,10 @@ public class MapBrain : MonoBehaviour
 
         if (cornersCount >= fitnessCornerMin && cornersCount <= fitnessCornerMax)
             score += cornersCount * fitnessCornerWeight;
+
         else if (cornersCount > fitnessCornerMax)
             score -= fitnessCornerWeight * (cornersCount - fitnessCornerMax);
+
         else if (cornersCount > fitnessCornerMin)
             score -= fitnessCornerWeight * fitnessCornerMin;
 

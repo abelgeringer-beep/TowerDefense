@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class Settings : MonoBehaviour
     public Toggle vSync;
     public Slider brightnessSlider;
     public Slider fpsSlider;
-    
+    public AudioMixer audioMixer;
+
     private void Start()
     {
         SetResolutionDropDown();
@@ -50,6 +52,12 @@ public class Settings : MonoBehaviour
         graphicsDd.value = idx;
 
         PlayerPrefs.SetInt("qualityIdx", idx);
+    }
+
+    public void SetVolume(float vol)
+    {
+        Debug.Log(vol);
+        audioMixer.SetFloat("MasterVolume", vol);
     }
 
     public void SetVSync(bool isVSync)

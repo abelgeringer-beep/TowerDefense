@@ -166,6 +166,10 @@ MonoBehaviour:
     m_Localized: Fejleszt
     m_Metadata:
       m_Items: []
+  - m_Id: 753619781468160
+    m_Localized: "Hanger\u0151"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
