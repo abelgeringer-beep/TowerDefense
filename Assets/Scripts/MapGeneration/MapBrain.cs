@@ -27,7 +27,7 @@ public class MapBrain : MonoBehaviour
     private int bestMapGenerationNumber = 0;
     private int generationNumber = 1;
 
-    [Header("fitness parameters")]
+    [Header("Fitness parameters")]
     [SerializeField]
     private int fitnessCornerMin = 6;
     [SerializeField]
@@ -58,7 +58,7 @@ public class MapBrain : MonoBehaviour
     [SerializeField]
     private int NumberOfKnightPieces = 7;
 
-    [Header("GridVisualizer grid")]
+    [Header("Map Visualizer")]
     public MapVisualizer mapVisualizer;
     private DateTime endDate;
     private DateTime startDate;
@@ -86,7 +86,8 @@ public class MapBrain : MonoBehaviour
 
         grid = new MapGrid(mapWidth, mapLength);
 
-        MapHelper.RandomlyChoseAndSetStartAndExitPoints(grid, ref startPosition, ref endPosition, randomStartAndEnd, startPositionEdge, exitPositionEdge);
+        MapHelper.RandomlyChoseAndSetStartAndExitPoints(grid, ref startPosition, ref endPosition,
+            randomStartAndEnd, startPositionEdge, exitPositionEdge);
 
         isAlgorythmRunning = true;
         startDate = DateTime.Now;
