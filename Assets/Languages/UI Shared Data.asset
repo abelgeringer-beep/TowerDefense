@@ -19,10 +19,6 @@ MonoBehaviour:
     m_Key: Anti-Aliasing
     m_Metadata:
       m_Items: []
-  - m_Id: 76298648993792
-    m_Key: CompleteLevel
-    m_Metadata:
-      m_Items: []
   - m_Id: 76430949924864
     m_Key: Continue
     m_Metadata:
